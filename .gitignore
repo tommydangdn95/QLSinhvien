@@ -1,0 +1,50 @@
+# CMake build output
+cmake-build-*/
+CMakeLists.txt.user*
+
+.idea
+
+# CLion specific files
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries/
+.idea/*.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/codeStyles/
+.idea/copyright/
+.idea/encodings.xml
+.idea/fileTemplates/
+.idea/inspectionProfiles/
+.idea/libraries/
+.idea/scopes/
+.idea/sshConfigs.xml
+.idea/uiDesigner.xml
+.idea/watcherTasks.xml
+
+# Local history for CLion
+.idea/shelf/
+
+# External build tools output (e.g., Make, Ninja)
+build/
+bin/
+obj/
+
+# Executables and libraries
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Object files
+*.o
+*.obj
+
+# Core dumps
+core.*
+
+# User-specific files
+*.user
