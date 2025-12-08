@@ -4,19 +4,18 @@
 
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
-#include "../includes/NodeBangDiem.h"
+#include "../includes/Node.h"
 
 
-class LinkedListBangDiem {
+class LinkedList {
 private:
-    NodeBangDiem* head;
+    Node* head;
     int length;
 
 public:
-    LinkedListBangDiem();
+    LinkedList();
 
     void them(BangDiem* bangDiem);
-    void xuat();
 };
 
 #endif //LINKEDLIST_H

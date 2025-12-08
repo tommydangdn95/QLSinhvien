@@ -2,25 +2,25 @@
 // Created by Tommy-Asus on 12/7/2025.
 //
 
-#include "../includes/LinkedListBangDiem.h"
+#include "../includes/LinkedList.h"
 
-LinkedListBangDiem::LinkedListBangDiem() {
+LinkedList::LinkedList() {
     this->head = nullptr;
     this->length = 0;
 }
 
-void LinkedListBangDiem::them(BangDiem *bangDiem) {
-    NodeBangDiem* newNode = new NodeBangDiem(bangDiem);
+void LinkedList::them(BangDiem *bangDiem) {
+    Node* newNode = new Node(bangDiem);
     if (this->length == 0) {
         this->head = newNode;
         this->length++;
         return;
     }
-    NodeBangDiem* temp = this->head;
+    
+    Node* temp = this->head;
     while (temp->next != nullptr) {
         temp = temp->next;
     }
     temp->next = newNode;
     this->length++;
 }
-

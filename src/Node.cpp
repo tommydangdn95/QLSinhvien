@@ -2,9 +2,9 @@
 // Created by Tommy-Asus on 12/7/2025.
 //
 
-#include "../includes/NodeBangDiem.h"
+#include "../includes/Node.h"
 
-NodeBangDiem::NodeBangDiem(BangDiem* value) {
+Node::Node(BangDiem* value) {
     this->data = value;
     this->next = nullptr;
 }

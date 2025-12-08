@@ -7,12 +7,12 @@
 
 #include "BangDiem.h"
 
-class NodeBangDiem {
+class Node {
 public:
     BangDiem* data;
-    NodeBangDiem* next;
+    Node* next;
 
-    NodeBangDiem(BangDiem* value);
+    Node(BangDiem* value);
 };
 
 #endif //NODE_H

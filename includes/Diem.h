@@ -33,7 +33,7 @@ public:
 
     void tinhDiemTongKet();
     string xepLoai();
-    void nhap(MonHoc* monHoc);
+    void nhap();
     void xuat();
 };
 

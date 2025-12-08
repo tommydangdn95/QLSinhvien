@@ -11,8 +11,8 @@ add_executable(QLSinhvien main.cpp
         src/SinhVien.cpp
         includes/Diem.h
         includes/BangDiem.h
-        src/NodeBangDiem.cpp
-        includes/NodeBangDiem.h
+        src/Node.cpp
+        includes/Node.h
         src/BangDiem.cpp
-        includes/LinkedListBangDiem.h
-        src/LinkedListBangeDiem.cpp)
+        includes/LinkedList.h
+        src/LinkedList.cpp)
