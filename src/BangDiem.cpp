@@ -29,9 +29,9 @@ void BangDiem::setDiem(Diem* diem) { this->diem = diem; }
 
 void BangDiem::xuat() {
     if (sinhVien != nullptr && monHoc != nullptr && diem != nullptr) {
-        cout << left << setw(12) << sinhVien->getMaSV()
-             << setw(25) << sinhVien->getHoTen()
-             << setw(30) << monHoc->getTenMon();
+        cout << "Ma Sinh vien: " << sinhVien->getMaSV() << endl;
+        cout << "Ho va Ten: " << sinhVien->getHoTen() << endl;
+        cout << "Mon hoc: " << monHoc->getTenMon() << endl;
         diem->xuat();
         cout << endl;
     }

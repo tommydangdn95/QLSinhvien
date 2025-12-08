@@ -2,7 +2,10 @@
 // Created by Tommy-Asus on 12/7/2025.
 //
 
+#include <stdio.h>
+#include <iostream>
 #include "../includes/LinkedList.h"
+using namespace std;
 
 LinkedList::LinkedList() {
     this->head = nullptr;
@@ -24,3 +27,19 @@ void LinkedList::them(BangDiem *bangDiem) {
     temp->next = newNode;
     this->length++;
 }
+
+void LinkedList::xuatHetThongTin() {
+    if (this->length == 0) {
+        cout << "Danh sach bang diem trong" << endl;
+        return;
+    }
+
+    Node* temp = this->head;
+    cout << "========== Bang diem sinh vien ==========" << endl;
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        current->xuat();
+        temp = temp->next;
+    }
+}
+

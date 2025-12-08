@@ -66,11 +66,11 @@ void Diem::nhap() {
 }
 
 void Diem::xuat() {
-    cout << setw(8) << fixed << setprecision(1) << diemChuyenCan
-         << setw(8) << diemGiuaKy
-         << setw(8) << diemCuoiKy
-         << setw(8) << diemTongKet
-         << setw(15) << xepLoai();
+    cout  << "Diem chuyen can: " << fixed << setprecision(1) << diemChuyenCan << endl;
+    cout  << "Diem giua ky: " << diemGiuaKy << endl;
+    cout  << "Diem cuoi ky: " << diemCuoiKy << endl;
+    cout  << "Diem tong ket: " << diemTongKet << endl;
+    cout  << "Xep Loai: " << xepLoai() << endl;
 }
 
 

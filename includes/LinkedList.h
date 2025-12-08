@@ -16,6 +16,7 @@ public:
     LinkedList();
 
     void them(BangDiem* bangDiem);
+    void xuatHetThongTin();
 };
 
 #endif //LINKEDLIST_H
