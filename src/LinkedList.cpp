@@ -12,6 +12,10 @@ LinkedList::LinkedList() {
     this->length = 0;
 }
 
+int LinkedList::getLength() {
+    return this->length;
+}
+
 void LinkedList::them(BangDiem *bangDiem) {
     Node* newNode = new Node(bangDiem);
     if (this->length == 0) {
@@ -28,18 +32,33 @@ void LinkedList::them(BangDiem *bangDiem) {
     this->length++;
 }
 
-void LinkedList::xuatHetThongTin() {
+
+void LinkedList::hienThiDanhSachBangDiem() {
     if (this->length == 0) {
         cout << "Danh sach bang diem trong" << endl;
         return;
     }
 
+    int index = 0;
     Node* temp = this->head;
     cout << "========== Bang diem sinh vien ==========" << endl;
     while (temp != nullptr) {
         BangDiem* current = temp->data;
-        current->xuat();
+        cout << index + 1 << "." << current->getThongTin() << endl;
         temp = temp->next;
+        index++;
     }
 }
 
+// Sap xep bang diem theo maSV tang dan
+void LinkedList::sapXepDanhSachBangDiemTheoMaSinhVien() {
+    if (!head && !head->next) {
+        cout << "Danh sach bang diem trong" << endl;
+        return;
+    }
+
+    bool swapped = true;
+    while (swapped) {
+        swapped = false;
+    }
+}

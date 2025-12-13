@@ -6,7 +6,7 @@
 
 #ifndef MONHOC_H
 #define MONHOC_H
-
+#include <string>
 using namespace std;
 
 class MonHoc {
@@ -28,7 +28,7 @@ public:
     void setSoTinChi(int tc);
 
     void nhap();
-    void xuat();
+    string getThongTin();
 
 };
 

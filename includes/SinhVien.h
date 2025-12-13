@@ -33,7 +33,7 @@ public:
     void setKhoa(string khoa);
 
     void nhap();
-    void xuat();
+    string getThongTin();
 };
 
 #endif //SINHVIEN_H

@@ -3,6 +3,8 @@
 //
 
 #include "../includes/SinhVien.h"
+
+#include <format>
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -50,10 +52,10 @@ void SinhVien::nhap() {
     getline(cin, khoa);
 }
 
-void SinhVien::xuat() {
-    cout << left << setw(12) << maSinhVien
-         << setw(25) << hoTen
-         << setw(15) << ngaySinh
-         << setw(10) << lop
-         << setw(20) << khoa << endl;
+string SinhVien::getThongTin() {
+    string msg = format("MaSv: {} - Ho va Ten: {} - Ngay sinh: {} - Lop: {} - Khoa: {}",
+            this->maSinhVien,
+            this->hoTen,
+            this->ngaySinh, this->lop, this->khoa);
+    return msg;
 }

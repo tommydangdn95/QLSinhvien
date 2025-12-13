@@ -5,6 +5,8 @@
 #include "../includes/BangDiem.h"
 #include <iostream>
 #include <iomanip>
+#include <format>
+
 using namespace std;
 
 BangDiem::BangDiem() {
@@ -27,13 +29,11 @@ void BangDiem::setSinhVien(SinhVien* sinhVien) { this->sinhVien = sinhVien; }
 void BangDiem::setMonHoc(MonHoc* monHoc) { this->monHoc = monHoc; }
 void BangDiem::setDiem(Diem* diem) { this->diem = diem; }
 
-void BangDiem::xuat() {
-    if (sinhVien != nullptr && monHoc != nullptr && diem != nullptr) {
-        cout << "Ma Sinh vien: " << sinhVien->getMaSV() << endl;
-        cout << "Ho va Ten: " << sinhVien->getHoTen() << endl;
-        cout << "Mon hoc: " << monHoc->getTenMon() << endl;
-        diem->xuat();
-        cout << endl;
-    }
+string BangDiem::getThongTin() {
+    string msg = format("{:<1}{}\n{:<2}{}\n{:<2}{}",
+                       "",sinhVien->getThongTin(),
+                       "",monHoc->getThongTin(),
+                       "",diem->getThongTin());
+    return msg;
 }
 

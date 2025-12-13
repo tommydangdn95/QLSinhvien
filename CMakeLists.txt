@@ -15,4 +15,11 @@ add_executable(QLSinhvien main.cpp
         includes/Node.h
         src/BangDiem.cpp
         includes/LinkedList.h
-        src/LinkedList.cpp)
+        src/LinkedList.cpp
+        includes/QLSinhVienService.h
+        src/QLSinhVienService.cpp
+        includes/QLMonHocService.h
+        src/QLMonHocService.cpp
+        includes/AppService.h
+        src/AppService.cpp
+)

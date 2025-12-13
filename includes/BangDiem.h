@@ -27,7 +27,7 @@ public:
     void setMonHoc(MonHoc* monHoc);
     void setDiem(Diem* diem);
 
-    void xuat();
+    string getThongTin();
 };
 
 #endif //BANGDIEM_H

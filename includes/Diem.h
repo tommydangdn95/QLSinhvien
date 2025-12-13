@@ -19,7 +19,7 @@ private:
 public:
     // Constructor
     Diem();
-    Diem(MonHoc* monHoc, float diemChuyenCan, float diemGiuaKy, float diemCuoiKy);
+    Diem(float diemChuyenCan, float diemGiuaKy, float diemCuoiKy);
 
     MonHoc* getMonHoc();
     float getDiemChuyenCan();
@@ -34,7 +34,7 @@ public:
     void tinhDiemTongKet();
     string xepLoai();
     void nhap();
-    void xuat();
+    string getThongTin();
 };
 
 #endif //DIEM_H

@@ -1,7 +1,8 @@
 #include "../includes/MonHoc.h"
 #include <iostream>
 #include <iomanip>
-#include <utility>
+#include <format>
+
 using namespace std;
 
 MonHoc::MonHoc() {
@@ -34,8 +35,10 @@ void MonHoc::nhap() {
     cin >> soTinChi;
 }
 
-void MonHoc::xuat() {
-    cout << left << setw(10) << maMon 
-         << setw(30) << tenMon 
-         << setw(10) << soTinChi << endl;
+string MonHoc::getThongTin() {
+    string msg = format("Ma MonHoc: {} - Ten Mon Hoc: {} - So tin chi: {}",
+            this->maMon,
+            this->tenMon,
+            this->soTinChi);
+    return msg;
 }

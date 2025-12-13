@@ -5,6 +5,8 @@
 #include "../includes/MonHoc.h"
 #include "../includes/Diem.h"
 #include <iostream>
+#include <iomanip>
+#include <format>
 
 using namespace std;
 
@@ -15,7 +17,7 @@ Diem::Diem() {
     this->diemTongKet = 0;
 }
 
-Diem::Diem(MonHoc* monHoc, float diemChuyenCan, float diemGiuaKy, float diemCuoiKy){
+Diem::Diem(float diemChuyenCan, float diemGiuaKy, float diemCuoiKy){
     this->diemChuyenCan = diemChuyenCan;
     this->diemGiuaKy = diemGiuaKy;
     this->diemCuoiKy = diemCuoiKy;
@@ -65,12 +67,13 @@ void Diem::nhap() {
     tinhDiemTongKet();
 }
 
-void Diem::xuat() {
-    cout  << "Diem chuyen can: " << fixed << setprecision(1) << diemChuyenCan << endl;
-    cout  << "Diem giua ky: " << diemGiuaKy << endl;
-    cout  << "Diem cuoi ky: " << diemCuoiKy << endl;
-    cout  << "Diem tong ket: " << diemTongKet << endl;
-    cout  << "Xep Loai: " << xepLoai() << endl;
+string Diem::getThongTin() {
+    string msg = format("Diem chuyen can: {} - Diem giua ky: {} - Diem cuoi ky: {} - Diem Tong Ket: {}",
+        this->diemChuyenCan,
+        this->diemGiuaKy,
+        this->diemCuoiKy,
+        this->diemTongKet);
+    return msg;
 }
 
 

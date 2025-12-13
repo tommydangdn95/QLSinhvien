@@ -5,18 +5,20 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 #include "../includes/Node.h"
-
+#include <iostream>
+#include <fstream>
+#include <vector>
 
 class LinkedList {
 private:
     Node* head;
     int length;
-
 public:
     LinkedList();
-
+    int getLength();
     void them(BangDiem* bangDiem);
-    void xuatHetThongTin();
+    void hienThiDanhSachBangDiem();
+    void sapXepDanhSachBangDiemTheoMaSinhVien();
 };
 
 #endif //LINKEDLIST_H
