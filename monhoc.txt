@@ -1,0 +1,10 @@
+KTLT|Ky Thuat Lap Trinh|3|
+CSDL|Co So Du Lieu|4|
+MANG|Mang May Tinh|3|
+HE|He Dieu Hanh|4|
+PTPM|Phat Trien Phan Mem|3|
+TOAN|Toan Cao Cap|4|
+VAT|Vat Ly|2|
+HOA|Hoa Hoc|3|
+ANH|Tieng Anh|2|
+THE|The Duc|1|

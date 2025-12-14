@@ -1,0 +1,29 @@
+SV001|Nguyen Van A|KTLT|Ky Thuat Lap Trinh|8.5|8.0|9.0|
+SV001|Nguyen Van A|CSDL|Co So Du Lieu|7.5|7.8|8.5|
+SV001|Nguyen Van A|MANG|Mang May Tinh|9.0|8.5|9.5|
+SV002|Tran Thi B|KTLT|Ky Thuat Lap Trinh|7.0|7.5|8.0|
+SV002|Tran Thi B|CSDL|Co So Du Lieu|8.0|8.2|8.5|
+SV002|Tran Thi B|HE|He Dieu Hanh|6.5|7.0|7.5|
+SV003|Le Van C|KTLT|Ky Thuat Lap Trinh|9.0|9.2|9.5|
+SV003|Le Van C|MANG|Mang May Tinh|8.5|8.8|9.0|
+SV003|Le Van C|PTPM|Phat Trien Phan Mem|8.0|8.5|8.8|
+SV003|Le Van C|TOAN|Toan Cao Cap|9.0|9.0|9.2|
+SV004|Pham Thi D|CSDL|Co So Du Lieu|6.0|6.5|7.0|
+SV004|Pham Thi D|HE|He Dieu Hanh|5.5|6.0|6.5|
+SV005|Hoang Van E|KTLT|Ky Thuat Lap Trinh|8.0|8.2|8.5|
+SV005|Hoang Van E|MANG|Mang May Tinh|7.5|7.8|8.2|
+SV005|Hoang Van E|VAT|Vat Ly|7.0|7.2|7.5|
+SV006|Cao Thi F|PTPM|Phat Trien Phan Mem|8.5|8.8|9.0|
+SV006|Cao Thi F|TOAN|Toan Cao Cap|8.0|8.5|8.8|
+SV006|Cao Thi F|HOA|Hoa Hoc|7.5|7.8|8.0|
+SV007|Vu Van G|KTLT|Ky Thuat Lap Trinh|6.5|7.0|7.5|
+SV007|Vu Van G|CSDL|Co So Du Lieu|7.0|7.2|7.5|
+SV008|Dang Thi H|MANG|Mang May Tinh|8.0|8.5|9.0|
+SV008|Dang Thi H|HE|He Dieu Hanh|7.5|8.0|8.5|
+SV008|Dang Thi H|ANH|Tieng Anh|8.5|8.8|9.0|
+SV009|Bui Van I|KTLT|Ky Thuat Lap Trinh|9.0|9.0|9.5|
+SV009|Bui Van I|PTPM|Phat Trien Phan Mem|8.5|9.0|9.0|
+SV009|Bui Van I|TOAN|Toan Cao Cap|8.0|8.5|8.8|
+SV010|Ngo Thi K|CSDL|Co So Du Lieu|9.0|9.0|9.5|
+SV010|Ngo Thi K|MANG|Mang May Tinh|8.5|8.8|9.0|
+SV010|Ngo Thi K|THE|The Duc|9.5|9.5|9.5|
