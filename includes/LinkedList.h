@@ -19,6 +19,9 @@ public:
     void them(BangDiem* bangDiem);
     void hienThiDanhSachBangDiem();
     void sapXepDanhSachBangDiemTheoMaSinhVien();
+    Node* getHead();
+    void hienThiBangDiemTheoMaSinhVien(string maSv);
+    void hienThiBangDiemTheoMaSinhVienVaMonHoc(string maSv, string maMon);
 };
 
 #endif //LINKEDLIST_H
