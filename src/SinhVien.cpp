@@ -4,7 +4,7 @@
 
 #include "../includes/SinhVien.h"
 
-#include <format>
+#include <sstream>
 #include <iostream>
 #include <iomanip>
 using namespace std;
@@ -53,9 +53,7 @@ void SinhVien::nhap() {
 }
 
 string SinhVien::getThongTin() {
-    string msg = format("MaSv: {} - Ho va Ten: {} - Ngay sinh: {} - Lop: {} - Khoa: {}",
-            this->maSinhVien,
-            this->hoTen,
-            this->ngaySinh, this->lop, this->khoa);
-    return msg;
+    stringstream ss;
+    ss << "MaSv: " << this->maSinhVien << " - Ho va Ten: " << this->hoTen << " - Ngay sinh: " << this->ngaySinh << " - Lop: " << this->lop << " - Khoa: " << this->khoa;
+    return ss.str();
 }

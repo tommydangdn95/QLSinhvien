@@ -6,7 +6,7 @@
 #include "../includes/Diem.h"
 #include <iostream>
 #include <iomanip>
-#include <format>
+#include <sstream>
 
 using namespace std;
 
@@ -68,12 +68,9 @@ void Diem::nhap() {
 }
 
 string Diem::getThongTin() {
-    string msg = format("Diem chuyen can: {} - Diem giua ky: {} - Diem cuoi ky: {} - Diem Tong Ket: {}",
-        this->diemChuyenCan,
-        this->diemGiuaKy,
-        this->diemCuoiKy,
-        this->diemTongKet);
-    return msg;
+    stringstream ss;
+    ss << "Diem chuyen can: " << this->diemChuyenCan << " - Diem giua ky: " << this->diemGiuaKy << " - Diem cuoi ky: " << this->diemCuoiKy << " - Diem Tong Ket: " << this->diemTongKet;
+    return ss.str();
 }
 
 

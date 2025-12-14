@@ -3,6 +3,7 @@
 //
 
 #include "../includes/AppService.h"
+#include <sstream>
 AppService::AppService() {
     this->kiemTraFile();
     this->docFileBangDiem();

@@ -43,9 +43,10 @@ int main() {
                 break;
             case 5:
                 appSerivce.hienThiDanhSachMonHoc();
+                break;
             case 6:
                 appSerivce.hienThiDanhSachBangDiemSinhVien();
-            break;
+                break;
             default:
                 break;
         }

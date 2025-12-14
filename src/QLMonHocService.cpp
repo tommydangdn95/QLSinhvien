@@ -3,6 +3,7 @@
 //
 
 #include "../includes/QLMonHocService.h"
+#include <sstream>
 QLMonHocService::QLMonHocService() {
     this->kiemTraFile();
     this->docFileMonHOc();

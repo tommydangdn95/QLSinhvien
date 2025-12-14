@@ -1,4 +1,5 @@
 #include "../includes/QLSinhVienService.h"
+#include <sstream>
 QLSinhVienService::QLSinhVienService() {
     this->kiemTraFile();
     this->docFileSinhVien();
