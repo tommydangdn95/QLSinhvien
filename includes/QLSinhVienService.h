@@ -10,18 +10,20 @@
 #include "LinkedList.h"
 #include "Node.h"
 #include "SinhVien.h"
+#include "SinhVienStack.h"
 #include <vector>
 #include <fstream>
 
 class QLSinhVienService {
 private:
     string FILE_NAME = "../sinhvien.txt";
-    vector<SinhVien*> danhSachSinhVien;
+    SinhVienStack  danhSachSinhVien;
     void kiemTraFile();
 public:
     QLSinhVienService();
     void themMoiSinhVien(SinhVien* sv);
     void hienThiDanhSachSinhVien();
+    void hienThiDanhSachSinhVien(vector<SinhVien*> listResult);
     vector<SinhVien*> getDanhSachSinhVien();
     SinhVien* timSinhVienBangId(string maSinhVien);
     SinhVien* timSinhVienBangIndex(int index);

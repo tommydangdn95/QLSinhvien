@@ -74,7 +74,7 @@ void QLMonHocService::kiemTraFile() {
 
 
 vector<MonHoc*> QLMonHocService::getDanhSachMonHoc() {
-    return this->danhSachMonHoc;
+    return this->danhSachMonHoc.toVector();
 }
 
 void QLMonHocService::hienThiDanhSachMonHoc() {
@@ -88,13 +88,7 @@ MonHoc* QLMonHocService::timMonHocBangId(string maMonHoc) {
         return nullptr;
     }
 
-    for (MonHoc* monHoc : this->danhSachMonHoc) {
-        if (monHoc->getMaMon() == maMonHoc) {
-            return monHoc;
-        }
-    }
-
-    return nullptr;
+    return this->danhSachMonHoc.findById(maMonHoc);
 }
 
 MonHoc* QLMonHocService::timMonHocBangIndex(int index) {

@@ -2,9 +2,10 @@
 // Created by Tommy-Asus on 12/7/2025.
 //
 
-#include <stdio.h>
 #include <iostream>
 #include "../includes/LinkedList.h"
+#include <map>
+#include <vector>
 using namespace std;
 
 LinkedList::LinkedList() {
@@ -14,6 +15,10 @@ LinkedList::LinkedList() {
 
 int LinkedList::getLength() {
     return this->length;
+}
+
+Node* LinkedList::getHead() {
+    return this->head;
 }
 
 void LinkedList::them(BangDiem *bangDiem) {
@@ -48,6 +53,230 @@ void LinkedList::hienThiDanhSachBangDiem() {
         temp = temp->next;
         index++;
     }
+}
+
+
+// tim thong tin sinhvien theo maSV
+LinkedList* LinkedList::timBangDiemTheoMaSinhVien(SinhVien* sv) {
+    LinkedList* listResult = new LinkedList();
+    if (!head && !head->next) {
+        cout << "Danh sach bang diem trong" << endl;
+        return listResult;
+    }
+
+    cout << "Dang tim kiem doi tuong sinh vien: " << sv->getMaSV()<< endl;
+    Node* temp = this->head;
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        if (current->getSinhVien()->getMaSV() == sv->getMaSV()) {
+            listResult->them(current);
+        }
+
+        temp = temp->next;
+    }
+
+    return listResult;
+}
+
+LinkedList *LinkedList::timBangDiemTheoMonHoc(MonHoc *monHoc) {
+    LinkedList* listResult = new LinkedList();
+    if (!head && !head->next) {
+        cout << "Danh sach bang diem trong" << endl;
+        return listResult;
+    }
+
+    cout << "Dang tim kiem doi tuong mon hoc: " << monHoc->getMaMon()<< endl;
+    Node* temp = this->head;
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        if (current->getMonHoc()->getMaMon() == monHoc->getMaMon()) {
+            listResult->them(current);
+        }
+        temp = temp->next;
+    }
+
+    return listResult;
+}
+
+LinkedList* LinkedList::timDanhSachSinhVienDiemTongketThapNhat() {
+    LinkedList* listResult = new LinkedList();
+    if (!head && !head->next) {
+        cout << "Danh sach bang diem trong" << endl;
+        return listResult;
+    }
+
+    Node* temp = this->head;
+    float minDiemTongKet = temp->data->getDiem()->getDiemTongKet();
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        if (current->getDiem()->getDiemTongKet() < minDiemTongKet ) {
+            minDiemTongKet = current->getDiem()->getDiemTongKet();
+        }
+        temp = temp->next;
+    }
+
+    temp = this->head;
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        if (current->getDiem()->getDiemTongKet() == minDiemTongKet ) {
+            listResult->them(current);
+        }
+        temp = temp->next;
+    }
+
+    return listResult;
+}
+
+LinkedList* LinkedList::timDanhSachSinhVienDiemTongketCaoNhat() {
+    LinkedList* listResult = new LinkedList();
+    if (!head && !head->next) {
+        cout << "Danh sach bang diem trong" << endl;
+        return listResult;
+    }
+
+    Node* temp = this->head;
+    float maxDiemTongKet = temp->data->getDiem()->getDiemTongKet();
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        if (current->getDiem()->getDiemTongKet() > maxDiemTongKet ) {
+            maxDiemTongKet = current->getDiem()->getDiemTongKet();
+        }
+        temp = temp->next;
+    }
+
+    temp = this->head;
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        if (current->getDiem()->getDiemTongKet() == maxDiemTongKet ) {
+            listResult->them(current);
+        }
+        temp = temp->next;
+    }
+
+    return listResult;
+}
+
+map<string, int> LinkedList::getDanhSachTanSuatMonHocDuocDangKy() {
+    map<string, int> result;
+    if (!head && !head->next) {
+        cout << "Danh sach bang diem trong" << endl;
+        return result;
+    }
+
+    map<string, int> frequency;
+    Node* temp = this->head;
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        string key = current->getMonHoc()->getMaMon();
+        if (frequency.count(key) > 0) {
+            frequency[key] = frequency[key] + 1;
+        }
+        else {
+            frequency.insert({key, 1});
+        }
+
+        temp = temp->next;
+    }
+
+    return frequency;
+}
+
+float LinkedList::tinhDiemTrungBinhCacMonCuaSinhVien(SinhVien *sinhVien) {
+    if (!head && !head->next) {
+        cout << "Danh sach bang diem trong" << endl;
+        return 0;
+    }
+
+    Node* temp = this->head;
+    float sum = 0;
+    int total = 0;
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        string key = current->getSinhVien()->getMaSV();
+        if (key == sinhVien->getMaSV()) {
+            sum = current->getDiem()->getDiemTongKet() + sum;
+            total += 1;
+        }
+        temp = temp->next;
+    }
+
+    if (sum == 0) {
+        return 0;
+    }
+
+   return (sum / total);
+}
+
+float LinkedList::tinhDiemTrungBinhTheoMonHoc(MonHoc* monHoc) {
+    if (!head && !head->next) {
+        cout << "Danh sach bang diem trong" << endl;
+        return 0;
+    }
+
+    Node* temp = this->head;
+    float sum = 0;
+    int total = 0;
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        string key = current->getMonHoc()->getMaMon();
+        if (key == monHoc->getMaMon()) {
+            sum = current->getDiem()->getDiemTongKet() + sum;
+            total += 1;
+        }
+        temp = temp->next;
+    }
+
+    if (sum == 0) {
+        return 0;
+    }
+
+    return (sum / total);
+}
+
+int LinkedList::tinhTongSoTinChiCuaSinhVien(SinhVien *sinhVien) {
+    if (!head || !head->next) {
+        cout << "Danh sach bang diem trong" << endl;
+        return 0;
+    }
+
+    Node* temp = this->head;
+    int sum = 0;
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        string key = current->getSinhVien()->getMaSV();
+        if (key == sinhVien->getMaSV()) {
+            sum = current->getMonHoc()->getSoTinChi() + sum;
+        }
+        temp = temp->next;
+    }
+
+    return sum;
+}
+
+int LinkedList::demSoMonHocSinhVienDaDangKy(SinhVien* sinhVien) {
+    if (!head || !head->next) {
+        cout << "Danh sach bang diem trong" << endl;
+        return 0;
+    }
+
+    map<string, int> frequency;
+    Node* temp = this->head;
+    int sum = 0;
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        if (current->getSinhVien()->getMaSV() == sinhVien->getMaSV()) {
+            string key = current->getMonHoc()->getMaMon();
+            if (frequency.count(key) > 0) {
+                frequency[key] = frequency[key] + 1;
+            }
+            else {
+                frequency.insert({key, 1});
+            }
+        }
+        temp = temp->next;
+    }
+
+    return frequency.size();
 }
 
 // Sap xep bang diem theo maSV tang dan

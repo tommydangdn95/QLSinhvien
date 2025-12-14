@@ -7,7 +7,7 @@
 #include "../includes/Node.h"
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include <map>
 
 class LinkedList {
 private:
@@ -16,9 +16,19 @@ private:
 public:
     LinkedList();
     int getLength();
+    Node* getHead();
     void them(BangDiem* bangDiem);
     void hienThiDanhSachBangDiem();
     void sapXepDanhSachBangDiemTheoMaSinhVien();
+    LinkedList* timBangDiemTheoMaSinhVien(SinhVien* sv);
+    LinkedList* timBangDiemTheoMonHoc(MonHoc* monHoc);
+    LinkedList* timDanhSachSinhVienDiemTongketThapNhat();
+    LinkedList* timDanhSachSinhVienDiemTongketCaoNhat();
+    map<string, int> getDanhSachTanSuatMonHocDuocDangKy();
+    float tinhDiemTrungBinhCacMonCuaSinhVien(SinhVien* sinhVien);
+    float tinhDiemTrungBinhTheoMonHoc(MonHoc* sinhVien);
+    int tinhTongSoTinChiCuaSinhVien(SinhVien* sinhVien);
+    int demSoMonHocSinhVienDaDangKy(SinhVien* sinhVien);
 };
 
 #endif //LINKEDLIST_H

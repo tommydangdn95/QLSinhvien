@@ -9,6 +9,13 @@
 #include "QLMonHocService.h"
 #include "QLSinhVienService.h"
 
+enum class XepLoai {
+    Gioi,
+    Kha,
+    TrungBinh,
+    Yeu,
+    Kem
+};
 
 class AppService {
 private:
@@ -16,6 +23,7 @@ private:
     QLMonHocService qlMonHocService;
     LinkedList danhSachBangDiem;
     string FILE_NAME = "../bangdiem.txt";
+    XepLoai getXepLoaiTheoDiemTrungBinh(float diemTrungBinh);
 public:
     AppService();
 
@@ -43,20 +51,19 @@ public:
 
     void kiemTraFile();
     void hienThiDanhSachBangDiemSinhVien();
+    void themMoiDiemSinhVien();
     void luuBangDiemVaoFile(BangDiem* bangDiem);
     void docFileBangDiem();
     void hienThiBangDiemCuaSinhVienBangId(string maSinhVien);
     void hienThiBangDiemCuaSinhVienBangIndex(int sinhVienIndex);
 
-    void themMoiDiemSinhVien();
-    void themMoiDiemSinhVienBangMasv(string maSv);
     void suaDiemSinhVien();
     void suaDiemSinhVienBangMasv(string maSv);
     void xoaDiemSinhVien();
     void xoaDiemSinhVienBangMasv(string maSv);
 
-    void timDanhSachBangDiemSinhVienBangMasv(string maSv);
-    void timDanhSachBangDiemSinhVienBangMaMonHoc(string maSv, string maMonHoc);
+    void timDanhSachBangDiemSinhVienBangMaSv();
+    void timDanhSachBangDiemSinhVienBangMaMonHoc();
 
     void sapXepDanhSachBangDiemTheoMaSinhVien();
     void sapXepDanhSachBangDiemSinhVienTheoTenSv();
@@ -65,17 +72,17 @@ public:
 
 
     // Toi thieu 4 yeu cau tim phan tu lon nhat, nho nhat
-    SinhVien* timSinhVienDiemTrungBinhThapNhat();
-    SinhVien* timSinhvienDiemTrungBinhCaoNhat();
-    LinkedList timBangDiemSinhVienDangKiNhieuMonNhat();
-    LinkedList timBangDiemSinhVienDangKiItMonNhat();
+    void timSinhVienDiemTongketThapNhat();
+    void timSinhVienDiemTongketCaoNhat();
+    void timMonHocSinhVienDangKiNhieuNhat();
+    void timMonHocSinhVienDangKiItMonNhat();
 
     // Toi thieu 5 yeu cau tinh tong, trung binh, dem
     void hienThiDanhSachDiemTrungBinhSinhVien();
-    void hienThiDanhSachSoTinChiSinhVien();
-    int demSoSinhVienDatLoaiGioi();
-    int demSoSinhVienDatLoaiKha();
-    float hienThiDiemTrungBinhCuaTatCaSinhVienTheoMonHoc();
+    void hienThiDanhSachDiemTrungBinhTheoMonHoc();
+    void hienThiDanhSachTongSoTinChiCuaSinhVien();
+    void demSoSinhVienDatLoaiGioi();
+    void demSoMonHocSinhVienDangKy();
 
     // Các yêu cầu thống kê theo điều kiện: 1 điểm (Tối thiểu 5 yêu cầu)
     void thongKeSoSinhVienDangHocMonHoc();

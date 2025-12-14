@@ -74,12 +74,20 @@ void QLSinhVienService::kiemTraFile() {
 
 
 vector<SinhVien *> QLSinhVienService::getDanhSachSinhVien() {
-    return this->danhSachSinhVien;
+    return this->danhSachSinhVien.toVector();
 }
 
 void QLSinhVienService::hienThiDanhSachSinhVien() {
-    for(int i = 0 ; i < danhSachSinhVien.size(); i++) {
-        cout << i + 1 << ". " << danhSachSinhVien[i]->getThongTin() << endl;
+    int index = 0;
+    for(SinhVien* sinhVien: this->getDanhSachSinhVien()) {
+        cout << index + 1 << ". " << sinhVien->getThongTin() << endl;
+        index++;
+    }
+}
+
+void QLSinhVienService::hienThiDanhSachSinhVien(vector<SinhVien*> listResult) {
+    for(int i = 0 ; i < listResult.size(); i++) {
+        cout << i + 1 << ". " << listResult[i]->getThongTin() << endl;
     }
 }
 
@@ -102,11 +110,5 @@ SinhVien* QLSinhVienService::timSinhVienBangId(string maSinhVien) {
         return nullptr;
     }
 
-    for (SinhVien*& sinhVien : this->danhSachSinhVien) {
-        if (sinhVien->getMaSV() == maSinhVien) {
-            return sinhVien;
-        }
-    }
-
-    return nullptr;
+    return this->danhSachSinhVien.findById(maSinhVien);
 }

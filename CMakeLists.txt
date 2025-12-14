@@ -22,4 +22,8 @@ add_executable(QLSinhvien main.cpp
         src/QLMonHocService.cpp
         includes/AppService.h
         src/AppService.cpp
+        includes/SinhVienStack.h
+        src/SinhVienStack.cpp
+        includes/MonHocDoublyList.h
+        src/MonHocDoublyList.cpp
 )

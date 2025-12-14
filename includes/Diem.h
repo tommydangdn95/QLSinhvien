@@ -32,7 +32,6 @@ public:
     void setDiemCuoiKy(float diemCuoiKy);
 
     void tinhDiemTongKet();
-    string xepLoai();
     void nhap();
     string getThongTin();
 };

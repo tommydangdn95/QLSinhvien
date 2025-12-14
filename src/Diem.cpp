@@ -49,14 +49,6 @@ void Diem::tinhDiemTongKet() {
     this->diemTongKet = diemChuyenCan * 0.1 + diemGiuaKy * 0.3 + diemCuoiKy * 0.6;
 }
 
-string Diem::xepLoai() {
-    if (diemTongKet >= 8.5) return "Gioi";
-    if (diemTongKet >= 7.0) return "Kha";
-    if (diemTongKet >= 5.5) return "Trung binh";
-    if (diemTongKet >= 4.0) return "Yeu";
-    return "Kem";
-}
-
 void Diem::nhap() {
     cout << "Diem chuyen can (0-10): ";
     cin >> diemChuyenCan;

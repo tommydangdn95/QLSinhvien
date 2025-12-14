@@ -3,6 +3,7 @@
 //
 
 #include "../includes/AppService.h"
+
 AppService::AppService() {
     this->kiemTraFile();
     this->docFileBangDiem();
@@ -179,8 +180,252 @@ void AppService::hienThiDanhSachBangDiemSinhVien() {
     this->danhSachBangDiem.hienThiDanhSachBangDiem();
 }
 
+void AppService::timDanhSachBangDiemSinhVienBangMaSv() {
+    vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
+
+
+    if (danhSachSinhVien.empty()) {
+        cout << "Chua co sinh vien nao! " << endl;
+        return;
+    }
+
+    cout << "----- Danh sach sinh vien ----- " << endl;
+    this->qlSinhvienService.hienThiDanhSachSinhVien();
+
+    int sinhvienLuaChon;
+    cout << "Nhap lua chon sinh vien:  ";
+    cin >> sinhvienLuaChon;
+
+    sinhvienLuaChon = sinhvienLuaChon - 1;
+    SinhVien* chonSv = this->qlSinhvienService.timSinhVienBangIndex(sinhvienLuaChon);
+    if (chonSv == nullptr) {
+        cout << "Chon sinh vien khong hop le hoac khong tim thay sinh vien! " << endl;
+        return;
+    }
+
+    LinkedList* listResult = this->danhSachBangDiem.timBangDiemTheoMaSinhVien(chonSv);
+    if (listResult->getLength() == 0) {
+        cout << "Khong tim thay bang diem nao cua sinh vien: " << chonSv->getMaSV() << endl;
+        return;
+    }
+
+    listResult->hienThiDanhSachBangDiem();
+}
+
+void AppService::timDanhSachBangDiemSinhVienBangMaMonHoc() {
+    vector<MonHoc*> danhSachMonHoc = this->qlMonHocService.getDanhSachMonHoc();
+
+    if (danhSachMonHoc.empty()) {
+        cout << "Chua co mon hoc nao! " << endl;
+        return;
+    }
+
+    cout << "----- Danh sach mon hoc ----- " << endl;
+    this->qlMonHocService.hienThiDanhSachMonHoc();
+
+    int monHocLuaChon;
+    cout << "Nhap ma chon mon hoc: ";
+    cin >> monHocLuaChon;
+
+    monHocLuaChon = monHocLuaChon - 1;
+    MonHoc* chonMonHoc = this->qlMonHocService.timMonHocBangIndex(monHocLuaChon);
+    if (chonMonHoc == nullptr) {
+        cout << "Chon mon hoc khong hop le hoac khong tim thay mon hoc! " << endl;
+        return;
+    }
+
+    LinkedList* listResult = this->danhSachBangDiem.timBangDiemTheoMonHoc(chonMonHoc);
+    if (listResult->getLength() == 0) {
+        cout << "Khong tim thay bang diem sinh vien nao cua mon hoc: " << chonMonHoc->getMaMon() << endl;
+        return;
+    }
+
+    listResult->hienThiDanhSachBangDiem();
+}
+
+void AppService::timSinhVienDiemTongketThapNhat() {
+    LinkedList* listResult = this->danhSachBangDiem.timDanhSachSinhVienDiemTongketThapNhat();
+    listResult->hienThiDanhSachBangDiem();
+}
+
+void AppService::timSinhVienDiemTongketCaoNhat() {
+}
+
+void AppService::timMonHocSinhVienDangKiItMonNhat() {
+    map<string, int> frequency = this->danhSachBangDiem.getDanhSachTanSuatMonHocDuocDangKy();
+
+    int minCountFrequency = frequency.begin()->second;
+    for (pair<string, int> key: frequency) {
+        if (key.second < minCountFrequency) {
+            minCountFrequency = key.second;
+        }
+    }
+
+    int show = 0;
+    for (pair<string, int> key: frequency) {
+        if (key.second ==  minCountFrequency) {
+            MonHoc* monHoc = this->qlMonHocService.timMonHocBangId(key.first);
+            if (monHoc != nullptr) {
+                cout << monHoc->getThongTin() << endl;
+                show++;
+            }
+        }
+    }
+
+    if (show==0) {
+        cout << "Khong tim thay mon hoc nao";
+        return;
+    }
+}
+
+void AppService::timMonHocSinhVienDangKiNhieuNhat() {
+    map<string, int> frequency = this->danhSachBangDiem.getDanhSachTanSuatMonHocDuocDangKy();
+
+    int maxCountFrequency = frequency.begin()->second;
+    for (pair<string, int> key: frequency) {
+        if (key.second > maxCountFrequency) {
+            maxCountFrequency = key.second;
+        }
+    }
+
+    int show = 0;
+    for (pair<string, int> key: frequency) {
+        if (key.second ==  maxCountFrequency) {
+            MonHoc* monHoc = this->qlMonHocService.timMonHocBangId(key.first);
+            if (monHoc != nullptr) {
+                cout << monHoc->getThongTin() << endl;
+                show++;
+            }
+        }
+    }
+
+    if (show == 0) {
+        cout << "Khong tim thay mon hoc nao";
+        return;
+    }
+}
+
+void AppService::hienThiDanhSachDiemTrungBinhSinhVien() {
+    if (this->qlSinhvienService.getDanhSachSinhVien().empty()) {
+        cout << "Danh sach sinh vien trong";
+        return;
+    }
+
+    vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
+
+    for (SinhVien* sinhVien: danhSachSinhVien) {
+        float diemTrungBinh = this->danhSachBangDiem.tinhDiemTrungBinhCacMonCuaSinhVien(sinhVien);
+        cout << "Ma sinh vien: "
+                << sinhVien->getMaSV()
+                << " - Ho va ten: " << sinhVien->getHoTen()
+                << " - Diem trung binh cac mon: " << diemTrungBinh << endl;
+    }
+}
+
+void AppService::hienThiDanhSachDiemTrungBinhTheoMonHoc() {
+    if (this->qlMonHocService.getDanhSachMonHoc().empty()) {
+        cout << "Danh sach mon hoc trong";
+        return;
+    }
+
+    vector<MonHoc*> danhSachMonHoc = this->qlMonHocService.getDanhSachMonHoc();
+
+    for (MonHoc* monHoc: danhSachMonHoc) {
+        float diemTrungBinh = this->danhSachBangDiem.tinhDiemTrungBinhTheoMonHoc(monHoc);
+        cout << "Ma mon hoc: "
+                << monHoc->getMaMon()
+                << " - Ten mon hoc: " << monHoc->getTenMon()
+                << " - Diem trung binh: " << diemTrungBinh << endl;
+    }
+}
+
+
+void AppService::hienThiDanhSachTongSoTinChiCuaSinhVien() {
+    vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
+
+    if (danhSachSinhVien.empty()) {
+        cout << "Danh sach sinh vien trong";
+        return;
+    }
+
+    for (SinhVien* sinhVien: danhSachSinhVien) {
+        int tongSoTinChi = this->danhSachBangDiem.tinhTongSoTinChiCuaSinhVien(sinhVien);
+        cout << "Ma sinh vien: "
+                << sinhVien->getMaSV()
+                << " - Ho va ten: " << sinhVien->getHoTen()
+                << " - Tong so tin chi cac mon: " << tongSoTinChi << endl;
+    }
+}
+
+void AppService::demSoSinhVienDatLoaiGioi() {
+    if (this->qlSinhvienService.getDanhSachSinhVien().empty()) {
+        cout << "Danh sach sinh vien trong";
+        return;
+    }
+
+    vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
+
+    int count = 0;
+    for (SinhVien* sinhVien: danhSachSinhVien) {
+        float diemTrungBinh = this->danhSachBangDiem.tinhDiemTrungBinhCacMonCuaSinhVien(sinhVien);
+        XepLoai xepLoai = getXepLoaiTheoDiemTrungBinh(diemTrungBinh);
+        if (xepLoai == XepLoai::Gioi) {
+            count+= 1;
+        }
+    }
+
+    if (count == 0) {
+        cout << "Khong co sinh vien nao xep hang gioi" << endl;
+        return;
+    }
+
+    cout << "So sinh vien dat loai gioi: " << count << endl;
+}
+
+void AppService::demSoMonHocSinhVienDangKy() {
+    vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
+
+
+    if (danhSachSinhVien.empty()) {
+        cout << "Chua co sinh vien nao! " << endl;
+        return;
+    }
+
+    cout << "----- Danh sach sinh vien ----- " << endl;
+    this->qlSinhvienService.hienThiDanhSachSinhVien();
+
+    int sinhvienLuaChon;
+    cout << "Nhap lua chon sinh vien:  ";
+    cin >> sinhvienLuaChon;
+
+    sinhvienLuaChon = sinhvienLuaChon - 1;
+    SinhVien* chonSv = this->qlSinhvienService.timSinhVienBangIndex(sinhvienLuaChon);
+    if (chonSv == nullptr) {
+        cout << "Chon sinh vien khong hop le hoac khong tim thay sinh vien! " << endl;
+        return;
+    }
+
+    int count = this->danhSachBangDiem.demSoMonHocSinhVienDaDangKy(chonSv);
+
+    if (count == 0) {
+        cout << "Sinh vien "<< chonSv->getHoTen() << " chua dang ki mon nao" << endl;
+        return;
+    }
+
+    cout << "Sinh vien: " << chonSv->getHoTen() << " da dang ki " << count << " mon" << endl;
+}
+
 
 
 void AppService::sapXepDanhSachBangDiemTheoMaSinhVien() {
 
+}
+
+
+XepLoai AppService::getXepLoaiTheoDiemTrungBinh(float diemTrungBinh) {
+    if (diemTrungBinh >= 8.5) return XepLoai::Gioi;
+    if (diemTrungBinh >= 7.0) return XepLoai::Kha;
+    if (diemTrungBinh >= 5.5) return XepLoai::TrungBinh;
+    if (diemTrungBinh >= 4.0) return XepLoai::Yeu;
+    return XepLoai::Kem;
 }

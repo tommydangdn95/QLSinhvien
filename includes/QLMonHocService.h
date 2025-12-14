@@ -8,11 +8,12 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include "MonHocDoublyList.h"
 
 class QLMonHocService {
 private:
     string FILE_NAME = "../monhoc.txt";
-    vector<MonHoc*> danhSachMonHoc;
+    MonHocDoublyList  danhSachMonHoc;
     void kiemTraFile();
 public:
     QLMonHocService();
