@@ -52,13 +52,80 @@ void LinkedList::hienThiDanhSachBangDiem() {
 
 // Sap xep bang diem theo maSV tang dan
 void LinkedList::sapXepDanhSachBangDiemTheoMaSinhVien() {
-    if (!head && !head->next) {
+    if (!head || !head->next) {
         cout << "Danh sach bang diem trong" << endl;
         return;
     }
 
+    // Bubble sort by student ID
     bool swapped = true;
     while (swapped) {
         swapped = false;
+        Node* temp = head;
+        while (temp != nullptr && temp->next != nullptr) {
+            if (temp->data->getSinhVien()->getMaSV() > temp->next->data->getSinhVien()->getMaSV()) {
+                // Swap data
+                BangDiem* tempData = temp->data;
+                temp->data = temp->next->data;
+                temp->next->data = tempData;
+                swapped = true;
+            }
+            temp = temp->next;
+        }
+    }
+    
+    cout << "========== Bang diem (sap xep theo ma sinh vien) ==========" << endl;
+    int index = 0;
+    Node* temp = head;
+    while (temp != nullptr) {
+        cout << index + 1 << ". " << temp->data->getThongTin() << endl;
+        temp = temp->next;
+        index++;
+    }
+}
+
+Node* LinkedList::getHead() {
+    return this->head;
+}
+
+void LinkedList::hienThiBangDiemTheoMaSinhVien(string maSv) {
+    cout << "\n========== Bang diem cua sinh vien: " << maSv << " ==========" << endl;
+    
+    bool found = false;
+    int count = 0;
+    Node* temp = head;
+    
+    while (temp != nullptr) {
+        if (temp->data->getSinhVien()->getMaSV() == maSv) {
+            count++;
+            cout << count << ". " << temp->data->getThongTin() << endl;
+            found = true;
+        }
+        temp = temp->next;
+    }
+    
+    if (!found) {
+        cout << "Khong tim thay bang diem cho sinh vien: " << maSv << endl;
+    } else {
+        cout << "\nTong so mon: " << count << endl;
+    }
+}
+
+void LinkedList::hienThiBangDiemTheoMaSinhVienVaMonHoc(string maSv, string maMon) {
+    cout << "\n========== Bang diem cua " << maSv << " - Mon: " << maMon << " ==========" << endl;
+    
+    bool found = false;
+    Node* temp = head;
+    
+    while (temp != nullptr) {
+        if (temp->data->getSinhVien()->getMaSV() == maSv && temp->data->getMonHoc()->getMaMon() == maMon) {
+            cout << temp->data->getThongTin() << endl;
+            found = true;
+        }
+        temp = temp->next;
+    }
+    
+    if (!found) {
+        cout << "Khong tim thay bang diem" << endl;
     }
 }

@@ -76,11 +76,14 @@ public:
     int demSoSinhVienDatLoaiGioi();
     int demSoSinhVienDatLoaiKha();
     float hienThiDiemTrungBinhCuaTatCaSinhVienTheoMonHoc();
+    float tinhDiemTrungBinhCaoNhatCuaSinhVien();
 
     // Các yêu cầu thống kê theo điều kiện: 1 điểm (Tối thiểu 5 yêu cầu)
     void thongKeSoSinhVienDangHocMonHoc();
     void thongKeSoSinhVienDatLoaiGioiTheoMonHoc();
     void thongKeSoSinhVienDatLoaiGPAXuaSac();
+    void hienThiSoSinhVienTheoLoaiDiem();
+    void thongKeSoSinhVienDatTheoLop();
 };
 
 #endif //AppService_h

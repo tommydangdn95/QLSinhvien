@@ -5,7 +5,7 @@
 #include "../includes/BangDiem.h"
 #include <iostream>
 #include <iomanip>
-#include <format>
+#include <sstream>
 
 using namespace std;
 
@@ -30,10 +30,8 @@ void BangDiem::setMonHoc(MonHoc* monHoc) { this->monHoc = monHoc; }
 void BangDiem::setDiem(Diem* diem) { this->diem = diem; }
 
 string BangDiem::getThongTin() {
-    string msg = format("{:<1}{}\n{:<2}{}\n{:<2}{}",
-                       "",sinhVien->getThongTin(),
-                       "",monHoc->getThongTin(),
-                       "",diem->getThongTin());
-    return msg;
+    stringstream ss;
+    ss << sinhVien->getThongTin() << "\n" << monHoc->getThongTin() << "\n" << diem->getThongTin();
+    return ss.str();
 }
 

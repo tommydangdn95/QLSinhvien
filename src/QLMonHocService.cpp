@@ -3,6 +3,7 @@
 //
 
 #include "../includes/QLMonHocService.h"
+#include <sstream>
 QLMonHocService::QLMonHocService() {
     this->kiemTraFile();
     this->docFileMonHOc();
@@ -17,7 +18,7 @@ void QLMonHocService::luuMonHocVaoFile(MonHoc *monHoc) {
     ofstream file(this->FILE_NAME, ios::app);
 
     if (!file.is_open()) {
-        cout << "File could not be opened" << endl;
+        cout << "Khong the mo tep tin" << endl;
         return;
     }
 

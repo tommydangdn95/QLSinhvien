@@ -1,4 +1,5 @@
 #include "../includes/QLSinhVienService.h"
+#include <sstream>
 QLSinhVienService::QLSinhVienService() {
     this->kiemTraFile();
     this->docFileSinhVien();
@@ -13,7 +14,7 @@ void QLSinhVienService::luuSinhVienVaoFile(SinhVien* sv) {
     ofstream file(this->FILE_NAME, ios::app);
 
     if (!file.is_open()) {
-        cout << "File could not be opened" << endl;
+        cout << "Khong the mo tep tin" << endl;
         return;
     }
 
