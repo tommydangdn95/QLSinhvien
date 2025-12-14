@@ -58,12 +58,51 @@ string Diem::xepLoai() {
 }
 
 void Diem::nhap() {
-    cout << "Diem chuyen can (0-10): ";
-    cin >> diemChuyenCan;
-    cout << "Diem giua ky (0-10): ";
-    cin >> diemGiuaKy;
-    cout << "Diem cuoi ky (0-10): ";
-    cin >> diemCuoiKy;
+    cout << "Diem chuyen can (0 < diem < 10): ";
+    while (true) {
+        if (!(cin >> diemChuyenCan)) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Nhap khong hop le! Vui long nhap mot so: ";
+            continue;
+        }
+        if (diemChuyenCan <= 0 || diemChuyenCan >= 10) {
+            cout << "Diem khong hop le! Diem phai trong khoang 0 den 10: ";
+            continue;
+        }
+        break;
+    }
+    
+    cout << "Diem giua ky (0 < diem < 10): ";
+    while (true) {
+        if (!(cin >> diemGiuaKy)) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Nhap khong hop le! Vui long nhap mot so: ";
+            continue;
+        }
+        if (diemGiuaKy <= 0 || diemGiuaKy >= 10) {
+            cout << "Diem khong hop le! Diem phai trong khoang 0 den 10: ";
+            continue;
+        }
+        break;
+    }
+    
+    cout << "Diem cuoi ky (0 < diem < 10): ";
+    while (true) {
+        if (!(cin >> diemCuoiKy)) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Nhap khong hop le! Vui long nhap mot so: ";
+            continue;
+        }
+        if (diemCuoiKy <= 0 || diemCuoiKy >= 10) {
+            cout << "Diem khong hop le! Diem phai trong khoang 0 den 10: ";
+            continue;
+        }
+        break;
+    }
+    
     tinhDiemTongKet();
 }
 

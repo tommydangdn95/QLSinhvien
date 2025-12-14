@@ -25,7 +25,12 @@ int main() {
         cout << "0. Thoat" << endl;
         cout << "============================================" << endl;
         cout << "Nhap lua chon: ";
-        cin >> luaChon;
+        if (!(cin >> luaChon)) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Nhap khong hop le! Vui long nhap mot so." << endl;
+            continue;
+        }
         
         switch (luaChon)
         {

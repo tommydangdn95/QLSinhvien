@@ -65,7 +65,12 @@ void AppService::themMoiDiemSinhVien() {
 
     int sinhvienLuaChon;
     cout << "Nhap lua chon sinh vien:  ";
-    cin >> sinhvienLuaChon;
+    if (!(cin >> sinhvienLuaChon)) {
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "Nhap khong hop le! Vui long nhap mot so." << endl;
+        return;
+    }
 
     sinhvienLuaChon = sinhvienLuaChon - 1;
     SinhVien* chonSv = this->qlSinhvienService.timSinhVienBangIndex(sinhvienLuaChon);
@@ -78,8 +83,13 @@ void AppService::themMoiDiemSinhVien() {
     this->qlMonHocService.hienThiDanhSachMonHoc();
 
     int monHocLuaChon;
-    cout << "Nhap ma chon mon hoc: ";
-    cin >> monHocLuaChon;
+    cout << "Nhap mon hoc: ";
+    if (!(cin >> monHocLuaChon)) {
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "Nhap khong hop le! Vui long nhap mot so." << endl;
+        return;
+    }
 
     monHocLuaChon = monHocLuaChon - 1;
     MonHoc* chonMonHoc = this->qlMonHocService.timMonHocBangIndex(monHocLuaChon);
@@ -100,7 +110,7 @@ void AppService::luuBangDiemVaoFile(BangDiem *bangDiem) {
     ofstream file(this->FILE_NAME, ios::app);
 
     if (!file.is_open()) {
-        cout << "File could not be opened" << endl;
+        cout << "Khong the mo tep tin" << endl;
         return;
     }
 
