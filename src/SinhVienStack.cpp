@@ -100,8 +100,6 @@ vector<SinhVien*> SinhVienStack::toVector() const {
         current = current->next;
     }
 
-    std::reverse(result.begin(), result.end());
-
     return result;
 }
 

@@ -29,6 +29,7 @@ public:
 
     void nhap();
     string getThongTin();
+    void capNhatThongTin();
 
 };
 

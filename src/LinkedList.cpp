@@ -281,13 +281,25 @@ int LinkedList::demSoMonHocSinhVienDaDangKy(SinhVien* sinhVien) {
 
 // Sap xep bang diem theo maSV tang dan
 void LinkedList::sapXepDanhSachBangDiemTheoMaSinhVien() {
-    if (!head && !head->next) {
+    if (!head || !head->next) {
         cout << "Danh sach bang diem trong" << endl;
         return;
     }
 
+    // Bubble sort by student ID
     bool swapped = true;
     while (swapped) {
         swapped = false;
+        Node* temp = head;
+        while (temp != nullptr && temp->next != nullptr) {
+            if (temp->data->getSinhVien()->getMaSV() > temp->next->data->getSinhVien()->getMaSV()) {
+                // Swap data
+                BangDiem* tempData = temp->data;
+                temp->data = temp->next->data;
+                temp->next->data = tempData;
+                swapped = true;
+            }
+            temp = temp->next;
+        }
     }
 }

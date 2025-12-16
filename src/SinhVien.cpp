@@ -59,3 +59,9 @@ string SinhVien::getThongTin() {
             this->ngaySinh, this->lop, this->khoa);
     return msg;
 }
+
+void SinhVien::capNhatThongTin(string hoVaTen, string ngaySinh) {
+    cout << "Cap nhat thong tin sinh vien:  " << maSinhVien << endl;
+    this->setHoTen(hoVaTen);
+    this->setNgaySinh(ngaySinh);
+}

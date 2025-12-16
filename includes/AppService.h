@@ -32,6 +32,7 @@ public:
     // ========================================
     void themMoiMonHoc();
     void hienThiDanhSachMonHoc();
+    void capNhatThongTinMonHoc();
     void xoaMonHocBangIndex();
     MonHoc* timKiemMonHoc(string maMonHoc);
     void sapXepMonHocTheoTenMonHoc();
@@ -41,6 +42,7 @@ public:
     // ========================================
     void themMoiSinhVien();
     void hienThiDanhSachSinhVien();
+    void capNhatThongTinSinhVien();
     void xoaSinhVien();
     SinhVien* timKiemSinhVienBangId(string maSinhVien);
     void sapXepSinhVienTheoTenSinhVien();

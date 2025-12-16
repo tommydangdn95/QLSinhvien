@@ -24,6 +24,31 @@ void AppService::hienThiDanhSachMonHoc() {
     this->qlMonHocService.hienThiDanhSachMonHoc();
 }
 
+void AppService::capNhatThongTinMonHoc() {
+    vector<MonHoc*> danhSachMonHoc = this->qlMonHocService.getDanhSachMonHoc();
+    if (danhSachMonHoc.empty()) {
+        cout << "Chua co mon hoc nao! " << endl;
+        return;
+    }
+
+    cout << "----- Danh sach mon hoc ----- " << endl;
+    this->qlMonHocService.hienThiDanhSachMonHoc();
+
+    int monHocLuaChon;
+    cout << "Nhap ma chon mon hoc (1-10): ";
+    cin >> monHocLuaChon;
+
+    monHocLuaChon = monHocLuaChon - 1;
+    MonHoc* chonMonHoc = this->qlMonHocService.timMonHocBangIndex(monHocLuaChon);
+    if (chonMonHoc == nullptr) {
+        cout << "Chon mon hoc khong hop le hoac khong tim thay mon hoc! " << endl;
+        return;
+    }
+    
+    chonMonHoc->capNhatThongTin();
+    cout << "Cap nhat thong tin thanh cong" << endl;
+}
+
 
 
 // ========================================
@@ -40,6 +65,8 @@ void AppService::hienThiDanhSachSinhVien() {
     cout << "----- Danh sach sinh vien ----- " << endl;
     this->qlSinhvienService.hienThiDanhSachSinhVien();
 }
+
+void AppService
 
 
 // ========================================

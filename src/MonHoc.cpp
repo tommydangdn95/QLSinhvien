@@ -42,3 +42,11 @@ string MonHoc::getThongTin() {
             this->soTinChi);
     return msg;
 }
+
+void MonHoc::capNhatThongTin() {
+    cout << "Thay doi thong tin mon hoc: " << maMon << endl;
+    cout << "Nhap ten mon: ";
+    getline(cin, tenMon);
+    cout << "Nhap so tin chi: ";
+    cin >> soTinChi;
+}
