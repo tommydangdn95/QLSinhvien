@@ -22,12 +22,13 @@ public:
     SinhVien* getSinhVien();
     MonHoc* getMonHoc();
     Diem* getDiem();
-
+    
     void setSinhVien(SinhVien* sinhVien);
     void setMonHoc(MonHoc* monHoc);
     void setDiem(Diem* diem);
 
     string getThongTin();
+    string getThongTinInLine();
 };
 
 #endif //BANGDIEM_H

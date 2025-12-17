@@ -6,7 +6,8 @@
 #include <iostream>
 #include <iomanip>
 #include <format>
-
+#include <string>
+#include <sstream>
 using namespace std;
 
 BangDiem::BangDiem() {
@@ -37,3 +38,13 @@ string BangDiem::getThongTin() {
     return msg;
 }
 
+string BangDiem::getThongTinInLine(){
+    stringstream ss;
+    ss << this->sinhVien->getMaSV() << "|"
+        << this->sinhVien->getHoTen() << "|"
+        << this->monHoc->getMaMon() << "|"
+        << this->monHoc->getTenMon() << "|"
+        << this->diem->getDiemChuyenCan() << "|"
+        << this->diem->getDiemGiuaKy() << "|"
+        << this->diem->getDiemCuoiKy() << "|";
+}

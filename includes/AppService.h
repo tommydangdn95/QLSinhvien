@@ -28,11 +28,44 @@ public:
     AppService();
 
     // ========================================
-    // Mon Hoc
+    // NHAP, Sua, Xoa DU LIEU
     // ========================================
     void themMoiMonHoc();
-    void hienThiDanhSachMonHoc();
+    void themMoiSinhVien();
+    void themMoiDiemSinhVien();
     void capNhatThongTinMonHoc();
+    void capNhatThongTinSinhVien();
+    void capNhatThongTinBangDiem();
+
+    // ========================================
+    // ===== HIEN THI DU LIEU ===== =====
+    void hienThiDanhSachMonHoc();
+    void hienThiDanhSachSinhVien();
+    void hienThiDanhSachBangDiemSinhVien();
+
+    // ========================================
+    // ===== TIM KIEM ===== ===== =====
+    void timDanhSachBangDiemSinhVienBangMaSv();
+    void timDanhSachBangDiemSinhVienBangMaMonHoc();
+
+    // ========================================
+    // ===== TIM MIN/MAX, Tinh Toan, Tong  ===== =====
+    void timSinhVienDiemTongketThapNhat();
+    void timSinhVienDiemTongketCaoNhat();
+    void timMonHocSinhVienDangKiNhieuNhat();
+    void timMonHocSinhVienDangKiItMonNhat();
+
+    // ========================================
+    // ===== TINH TOAN =====
+    void hienThiDanhSachDiemTrungBinhSinhVien();
+    void hienThiDanhSachDiemTrungBinhTheoMonHoc();
+    void hienThiDanhSachTongSoTinChiCuaSinhVien();
+    void demSoSinhVienDatLoaiGioi();
+    void demSoMonHocSinhVienDangKy();
+
+    // ========================================
+    // ===== ===== TINH TOAN =====  ===== =====
+
     void xoaMonHocBangIndex();
     MonHoc* timKiemMonHoc(string maMonHoc);
     void sapXepMonHocTheoTenMonHoc();
@@ -41,7 +74,7 @@ public:
     // Sinh vien
     // ========================================
     void themMoiSinhVien();
-    void hienThiDanhSachSinhVien();
+    
     void capNhatThongTinSinhVien();
     void xoaSinhVien();
     SinhVien* timKiemSinhVienBangId(string maSinhVien);
@@ -51,11 +84,6 @@ public:
     // Bang Diem Sinh Vien
     // ========================================
 
-    void kiemTraFile();
-    void hienThiDanhSachBangDiemSinhVien();
-    void themMoiDiemSinhVien();
-    void luuBangDiemVaoFile(BangDiem* bangDiem);
-    void docFileBangDiem();
     void hienThiBangDiemCuaSinhVienBangId(string maSinhVien);
     void hienThiBangDiemCuaSinhVienBangIndex(int sinhVienIndex);
 
@@ -64,9 +92,6 @@ public:
     void xoaDiemSinhVien();
     void xoaDiemSinhVienBangMasv(string maSv);
 
-    void timDanhSachBangDiemSinhVienBangMaSv();
-    void timDanhSachBangDiemSinhVienBangMaMonHoc();
-
     void sapXepDanhSachBangDiemTheoMaSinhVien();
     void sapXepDanhSachBangDiemSinhVienTheoTenSv();
     void sapXepDanhSachBangDiemSinhVienTheoTenMonHoc();
@@ -74,22 +99,21 @@ public:
 
 
     // Toi thieu 4 yeu cau tim phan tu lon nhat, nho nhat
-    void timSinhVienDiemTongketThapNhat();
-    void timSinhVienDiemTongketCaoNhat();
-    void timMonHocSinhVienDangKiNhieuNhat();
-    void timMonHocSinhVienDangKiItMonNhat();
+
 
     // Toi thieu 5 yeu cau tinh tong, trung binh, dem
-    void hienThiDanhSachDiemTrungBinhSinhVien();
-    void hienThiDanhSachDiemTrungBinhTheoMonHoc();
-    void hienThiDanhSachTongSoTinChiCuaSinhVien();
-    void demSoSinhVienDatLoaiGioi();
-    void demSoMonHocSinhVienDangKy();
+
 
     // Các yêu cầu thống kê theo điều kiện: 1 điểm (Tối thiểu 5 yêu cầu)
     void thongKeSoSinhVienDangHocMonHoc();
     void thongKeSoSinhVienDatLoaiGioiTheoMonHoc();
     void thongKeSoSinhVienDatLoaiGPAXuaSac();
+
+    // Additional
+    void kiemTraFile();
+    void luuBangDiemVaoFile(BangDiem* bangDiem);
+    void docFileBangDiem();
+    void ghiDeFile();
 };
 
 #endif //AppService_h

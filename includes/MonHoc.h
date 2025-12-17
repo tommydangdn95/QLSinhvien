@@ -30,6 +30,7 @@ public:
     void nhap();
     string getThongTin();
     void capNhatThongTin();
+    string getThongTinInLine();
 
 };
 

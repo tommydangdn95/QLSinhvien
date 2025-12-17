@@ -9,6 +9,9 @@
 #include <fstream>
 #include <vector>
 #include "MonHocDoublyList.h"
+#include <string>
+
+using namespace std;
 
 class QLMonHocService {
 private:
@@ -24,6 +27,7 @@ public:
     MonHoc* timMonHocBangIndex(int index);
     void luuMonHocVaoFile(MonHoc* monHoc);
     void docFileMonHOc();
+    void ghiDeFile();
 };
 
 #endif //QLMONHOCSERVICE_H

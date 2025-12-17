@@ -18,6 +18,9 @@ public:
     int getLength();
     Node* getHead();
     void them(BangDiem* bangDiem);
+    void capNhatBangDiemBangMonHoc(MonHoc* monHoc);
+    void capNhatBangDiemBangSinhVien(SinhVien* sinhVien);
+
     void hienThiDanhSachBangDiem();
     void sapXepDanhSachBangDiemTheoMaSinhVien();
     LinkedList* timBangDiemTheoMaSinhVien(SinhVien* sv);

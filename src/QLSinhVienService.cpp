@@ -1,4 +1,8 @@
 #include "../includes/QLSinhVienService.h"
+#include <string>
+#include <sstream>
+using namespace std;
+
 QLSinhVienService::QLSinhVienService() {
     this->kiemTraFile();
     this->docFileSinhVien();

@@ -2,6 +2,9 @@
 #include <iostream>
 #include <iomanip>
 #include <format>
+#include <string>
+#include <sstream>
+using namespace std;
 
 using namespace std;
 
@@ -49,4 +52,11 @@ void MonHoc::capNhatThongTin() {
     getline(cin, tenMon);
     cout << "Nhap so tin chi: ";
     cin >> soTinChi;
+}
+
+string MonHoc::getThongTinInLine() {
+    stringstream ss;
+    ss << this->maMon << "|"
+        << this->tenMon << "|"
+        << this->soTinChi << "|";
 }

@@ -3,125 +3,18 @@
 //
 
 #include "../includes/AppService.h"
+#include <string>
+#include <sstream>
+using namespace std;
 
 AppService::AppService() {
     this->kiemTraFile();
     this->docFileBangDiem();
 }
 
-// ========================================
-// Mon Hoc
-// ========================================
-
-void AppService::themMoiMonHoc() {
-    MonHoc* monHoc = new MonHoc();
-    this->qlMonHocService.themMoiMonHoc(monHoc);
-    this->qlMonHocService.luuMonHocVaoFile(monHoc);
-}
-
-void AppService::hienThiDanhSachMonHoc() {
-    cout << "--- Danh sach mon hoc ---" << endl;
-    this->qlMonHocService.hienThiDanhSachMonHoc();
-}
-
-void AppService::capNhatThongTinMonHoc() {
-    vector<MonHoc*> danhSachMonHoc = this->qlMonHocService.getDanhSachMonHoc();
-    if (danhSachMonHoc.empty()) {
-        cout << "Chua co mon hoc nao! " << endl;
-        return;
-    }
-
-    cout << "----- Danh sach mon hoc ----- " << endl;
-    this->qlMonHocService.hienThiDanhSachMonHoc();
-
-    int monHocLuaChon;
-    cout << "Nhap ma chon mon hoc (1-10): ";
-    cin >> monHocLuaChon;
-
-    monHocLuaChon = monHocLuaChon - 1;
-    MonHoc* chonMonHoc = this->qlMonHocService.timMonHocBangIndex(monHocLuaChon);
-    if (chonMonHoc == nullptr) {
-        cout << "Chon mon hoc khong hop le hoac khong tim thay mon hoc! " << endl;
-        return;
-    }
-    
-    chonMonHoc->capNhatThongTin();
-    cout << "Cap nhat thong tin thanh cong" << endl;
-}
-
-
 
 // ========================================
-// Sinh vien
-// ========================================
-
-void AppService::themMoiSinhVien() {
-    SinhVien* sv = new SinhVien();
-    this->qlSinhvienService.themMoiSinhVien(sv);
-    this->qlSinhvienService.luuSinhVienVaoFile(sv);
-}
-
-void AppService::hienThiDanhSachSinhVien() {
-    cout << "----- Danh sach sinh vien ----- " << endl;
-    this->qlSinhvienService.hienThiDanhSachSinhVien();
-}
-
-void AppService
-
-
-// ========================================
-// Bang Diem Sinh Vien
-// ========================================
-
-void AppService::themMoiDiemSinhVien() {
-    vector<MonHoc*> danhSachMonHoc = this->qlMonHocService.getDanhSachMonHoc();
-    vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
-
-    if (danhSachMonHoc.empty()) {
-        cout << "Chua co mon hoc nao! " << endl;
-        return;
-    }
-
-    if (danhSachSinhVien.empty()) {
-        cout << "Chua co sinh vien nao! " << endl;
-        return;
-    }
-
-    cout << "----- Danh sach sinh vien ----- " << endl;
-    this->qlSinhvienService.hienThiDanhSachSinhVien();
-
-    int sinhvienLuaChon;
-    cout << "Nhap lua chon sinh vien:  ";
-    cin >> sinhvienLuaChon;
-
-    sinhvienLuaChon = sinhvienLuaChon - 1;
-    SinhVien* chonSv = this->qlSinhvienService.timSinhVienBangIndex(sinhvienLuaChon);
-    if (chonSv == nullptr) {
-        cout << "Chon sinh vien khong hop le hoac khong tim thay sinh vien! " << endl;
-        return;
-    }
-
-    cout << "----- Danh sach mon hoc ----- " << endl;
-    this->qlMonHocService.hienThiDanhSachMonHoc();
-
-    int monHocLuaChon;
-    cout << "Nhap ma chon mon hoc: ";
-    cin >> monHocLuaChon;
-
-    monHocLuaChon = monHocLuaChon - 1;
-    MonHoc* chonMonHoc = this->qlMonHocService.timMonHocBangIndex(monHocLuaChon);
-    if (chonMonHoc == nullptr) {
-        cout << "Chon mon hoc khong hop le hoac khong tim thay mon hoc! " << endl;
-        return;
-    }
-
-    Diem* diem = new Diem();
-    diem->nhap();
-
-    BangDiem* bangDiem = new BangDiem(chonSv, chonMonHoc, diem);
-    this->danhSachBangDiem.them(bangDiem);
-    this->luuBangDiemVaoFile(bangDiem);
-}
+// ===== File Operation =====
 
 void AppService::luuBangDiemVaoFile(BangDiem *bangDiem) {
     ofstream file(this->FILE_NAME, ios::app);
@@ -203,10 +96,151 @@ void AppService::kiemTraFile() {
     fileCheck.close();
 }
 
+void AppService::ghiDeFile() {
+    ofstream file(this->FILE_NAME);  // ← XÓA file cũ tự động
+        
+    if (!file.is_open()) {
+        cout << "⚠ Khong mo duoc file!\n";
+        return;
+    }
+
+} 
+
+// ========================================
+// ===== NHAP, Sua, Xoa DU LIEU =====
+
+// 1. Them mon hoc
+void AppService::themMoiMonHoc() {
+    MonHoc* monHoc = new MonHoc();
+    this->qlMonHocService.themMoiMonHoc(monHoc);
+    this->qlMonHocService.luuMonHocVaoFile(monHoc);
+}
+
+// 2. Them sinh vien
+void AppService::themMoiSinhVien() {
+    SinhVien* sv = new SinhVien();
+    this->qlSinhvienService.themMoiSinhVien(sv);
+    this->qlSinhvienService.luuSinhVienVaoFile(sv);
+}
+
+
+//3. Them diem sinh vien
+void AppService::themMoiDiemSinhVien() {
+    vector<MonHoc*> danhSachMonHoc = this->qlMonHocService.getDanhSachMonHoc();
+    vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
+
+    if (danhSachMonHoc.empty()) {
+        cout << "Chua co mon hoc nao! " << endl;
+        return;
+    }
+
+    if (danhSachSinhVien.empty()) {
+        cout << "Chua co sinh vien nao! " << endl;
+        return;
+    }
+
+    cout << "----- Danh sach sinh vien ----- " << endl;
+    this->qlSinhvienService.hienThiDanhSachSinhVien();
+
+    int sinhvienLuaChon;
+    cout << "Nhap lua chon sinh vien:  ";
+    cin >> sinhvienLuaChon;
+
+    sinhvienLuaChon = sinhvienLuaChon - 1;
+    SinhVien* chonSv = this->qlSinhvienService.timSinhVienBangIndex(sinhvienLuaChon);
+    if (chonSv == nullptr) {
+        cout << "Chon sinh vien khong hop le hoac khong tim thay sinh vien! " << endl;
+        return;
+    }
+
+    cout << "----- Danh sach mon hoc ----- " << endl;
+    this->qlMonHocService.hienThiDanhSachMonHoc();
+
+    int monHocLuaChon;
+    cout << "Nhap ma chon mon hoc: ";
+    cin >> monHocLuaChon;
+
+    monHocLuaChon = monHocLuaChon - 1;
+    MonHoc* chonMonHoc = this->qlMonHocService.timMonHocBangIndex(monHocLuaChon);
+    if (chonMonHoc == nullptr) {
+        cout << "Chon mon hoc khong hop le hoac khong tim thay mon hoc! " << endl;
+        return;
+    }
+
+    Diem* diem = new Diem();
+    diem->nhap();
+
+    BangDiem* bangDiem = new BangDiem(chonSv, chonMonHoc, diem);
+    this->danhSachBangDiem.them(bangDiem);
+    this->luuBangDiemVaoFile(bangDiem);
+}
+
+//4. Sua thong tin mon hoc
+void AppService::capNhatThongTinMonHoc() {
+    vector<MonHoc*> danhSachMonHoc = this->qlMonHocService.getDanhSachMonHoc();
+    if (danhSachMonHoc.empty()) {
+        cout << "Chua co mon hoc nao! " << endl;
+        return;
+    }
+
+    cout << "----- Danh sach mon hoc ----- " << endl;
+    this->qlMonHocService.hienThiDanhSachMonHoc();
+
+    int monHocLuaChon;
+    cout << "Nhap ma chon mon hoc (1-10): ";
+    cin >> monHocLuaChon;
+
+    monHocLuaChon = monHocLuaChon - 1;
+    MonHoc* chonMonHoc = this->qlMonHocService.timMonHocBangIndex(monHocLuaChon);
+    if (chonMonHoc == nullptr) {
+        cout << "Chon mon hoc khong hop le hoac khong tim thay mon hoc! " << endl;
+        return;
+    }
+     
+    chonMonHoc->capNhatThongTin();
+    this->qlMonHocService.ghiDeFile();
+    
+    cout << "Cap nhat thong tin thanh cong" << endl;
+}
+
+
+//5. Sua thong tin sinh vien
+
+//6. Sua diem sinh vien
+
+//7. Xoa sinh vien
+
+//8. Xoa mon hoc
+
+//9. Xoa diem sinh vien
+
+
+
+// ========================================
+// ===== HIEN THI DU LIEU ===== =====
+
+// 10. Hien thi danh sach sinh vien
+void AppService::hienThiDanhSachMonHoc() {
+    cout << "--- Danh sach mon hoc ---" << endl;
+    this->qlMonHocService.hienThiDanhSachMonHoc();
+}
+
+// 11. Hien thi danh sach mon hoc
+void AppService::hienThiDanhSachSinhVien() {
+    cout << "----- Danh sach sinh vien ----- " << endl;
+    this->qlSinhvienService.hienThiDanhSachSinhVien();
+}
+
+// 12. Hien thi danh sach bang diem
 void AppService::hienThiDanhSachBangDiemSinhVien() {
     this->danhSachBangDiem.hienThiDanhSachBangDiem();
 }
 
+// ========================================
+// ===== TIM KIEM ===== ===== =====
+
+
+// 13. Tim bang diem sinh vien theo ma SV
 void AppService::timDanhSachBangDiemSinhVienBangMaSv() {
     vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
 
@@ -239,6 +273,7 @@ void AppService::timDanhSachBangDiemSinhVienBangMaSv() {
     listResult->hienThiDanhSachBangDiem();
 }
 
+// 14. Tim bang diem sinh vien theo ma SV
 void AppService::timDanhSachBangDiemSinhVienBangMaMonHoc() {
     vector<MonHoc*> danhSachMonHoc = this->qlMonHocService.getDanhSachMonHoc();
 
@@ -270,41 +305,31 @@ void AppService::timDanhSachBangDiemSinhVienBangMaMonHoc() {
     listResult->hienThiDanhSachBangDiem();
 }
 
+
+// ========================================
+// ===== Sap Xep  ===== =====
+
+void AppService::sapXepDanhSachBangDiemTheoMaSinhVien() {
+
+}
+
+
+// ========================================
+// ===== TIM MIN/MAX, Tinh Toan, Tong  ===== =====
+
+// 19.Tim sinh vien co diem TB cao nhat
 void AppService::timSinhVienDiemTongketThapNhat() {
     LinkedList* listResult = this->danhSachBangDiem.timDanhSachSinhVienDiemTongketThapNhat();
     listResult->hienThiDanhSachBangDiem();
 }
 
+// 20.Tim sinh vien co diem TB thap nhat
 void AppService::timSinhVienDiemTongketCaoNhat() {
+    LinkedList* listResult = this->danhSachBangDiem.timDanhSachSinhVienDiemTongketCaoNhat();
+    listResult->hienThiDanhSachBangDiem();
 }
 
-void AppService::timMonHocSinhVienDangKiItMonNhat() {
-    map<string, int> frequency = this->danhSachBangDiem.getDanhSachTanSuatMonHocDuocDangKy();
-
-    int minCountFrequency = frequency.begin()->second;
-    for (pair<string, int> key: frequency) {
-        if (key.second < minCountFrequency) {
-            minCountFrequency = key.second;
-        }
-    }
-
-    int show = 0;
-    for (pair<string, int> key: frequency) {
-        if (key.second ==  minCountFrequency) {
-            MonHoc* monHoc = this->qlMonHocService.timMonHocBangId(key.first);
-            if (monHoc != nullptr) {
-                cout << monHoc->getThongTin() << endl;
-                show++;
-            }
-        }
-    }
-
-    if (show==0) {
-        cout << "Khong tim thay mon hoc nao";
-        return;
-    }
-}
-
+// 21. Tim sinh vien dang ky nhieu mon nhat
 void AppService::timMonHocSinhVienDangKiNhieuNhat() {
     map<string, int> frequency = this->danhSachBangDiem.getDanhSachTanSuatMonHocDuocDangKy();
 
@@ -332,6 +357,36 @@ void AppService::timMonHocSinhVienDangKiNhieuNhat() {
     }
 }
 
+// 22. Tim sinh vien dang ky it mon nhat
+void AppService::timMonHocSinhVienDangKiItMonNhat() {
+    map<string, int> frequency = this->danhSachBangDiem.getDanhSachTanSuatMonHocDuocDangKy();
+
+    int minCountFrequency = frequency.begin()->second;
+    for (pair<string, int> key: frequency) {
+        if (key.second < minCountFrequency) {
+            minCountFrequency = key.second;
+        }
+    }
+
+    int show = 0;
+    for (pair<string, int> key: frequency) {
+        if (key.second ==  minCountFrequency) {
+            MonHoc* monHoc = this->qlMonHocService.timMonHocBangId(key.first);
+            if (monHoc != nullptr) {
+                cout << monHoc->getThongTin() << endl;
+                show++;
+            }
+        }
+    }
+
+    if (show==0) {
+        cout << "Khong tim thay mon hoc nao";
+        return;
+    }
+}
+
+
+// 23. Hien thi danh sach diem TB sinh vien
 void AppService::hienThiDanhSachDiemTrungBinhSinhVien() {
     if (this->qlSinhvienService.getDanhSachSinhVien().empty()) {
         cout << "Danh sach sinh vien trong";
@@ -349,6 +404,7 @@ void AppService::hienThiDanhSachDiemTrungBinhSinhVien() {
     }
 }
 
+// 24. Hien thi danh sach diem trung binh theo cac mon
 void AppService::hienThiDanhSachDiemTrungBinhTheoMonHoc() {
     if (this->qlMonHocService.getDanhSachMonHoc().empty()) {
         cout << "Danh sach mon hoc trong";
@@ -366,7 +422,7 @@ void AppService::hienThiDanhSachDiemTrungBinhTheoMonHoc() {
     }
 }
 
-
+// 25. Hien thi danh sach tong so tin chi sinh vien dang ky
 void AppService::hienThiDanhSachTongSoTinChiCuaSinhVien() {
     vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
 
@@ -384,6 +440,7 @@ void AppService::hienThiDanhSachTongSoTinChiCuaSinhVien() {
     }
 }
 
+// 26. Dem so sinh vien dat loai gioi
 void AppService::demSoSinhVienDatLoaiGioi() {
     if (this->qlSinhvienService.getDanhSachSinhVien().empty()) {
         cout << "Danh sach sinh vien trong";
@@ -409,6 +466,7 @@ void AppService::demSoSinhVienDatLoaiGioi() {
     cout << "So sinh vien dat loai gioi: " << count << endl;
 }
 
+// 27. Tinh diem cao nhat cua tung sinh vien
 void AppService::demSoMonHocSinhVienDangKy() {
     vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
 
@@ -443,11 +501,8 @@ void AppService::demSoMonHocSinhVienDangKy() {
 }
 
 
-
-void AppService::sapXepDanhSachBangDiemTheoMaSinhVien() {
-
-}
-
+// ========================================
+// Additional
 
 XepLoai AppService::getXepLoaiTheoDiemTrungBinh(float diemTrungBinh) {
     if (diemTrungBinh >= 8.5) return XepLoai::Gioi;
@@ -456,3 +511,5 @@ XepLoai AppService::getXepLoaiTheoDiemTrungBinh(float diemTrungBinh) {
     if (diemTrungBinh >= 4.0) return XepLoai::Yeu;
     return XepLoai::Kem;
 }
+
+// ========================================

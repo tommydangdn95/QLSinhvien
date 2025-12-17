@@ -37,6 +37,22 @@ void LinkedList::them(BangDiem *bangDiem) {
     this->length++;
 }
 
+void LinkedList::capNhatBangDiemBangMonHoc(MonHoc* monHoc) {
+    if (this->length == 0) {
+        cout << "Danh sach bang diem trong" << endl;
+        return;
+    }
+
+    Node* temp = this->head;
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        if (current->getMonHoc()->getMaMon() == monHoc->getMaMon()){
+            current->setMonHoc(monHoc);
+        }
+        temp = temp->next;
+    }
+}
+
 
 void LinkedList::hienThiDanhSachBangDiem() {
     if (this->length == 0) {

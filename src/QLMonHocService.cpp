@@ -3,6 +3,11 @@
 //
 
 #include "../includes/QLMonHocService.h"
+#include <string>
+#include <sstream>
+using namespace std;
+
+
 QLMonHocService::QLMonHocService() {
     this->kiemTraFile();
     this->docFileMonHOc();
@@ -72,6 +77,21 @@ void QLMonHocService::kiemTraFile() {
     fileCheck.close();
 }
 
+void QLMonHocService::ghiDeFile() {
+    ofstream file(this->FILE_NAME);
+
+    if (!file.is_open()) {
+        cout << "⚠ Khong mo duoc file!\n";
+        return;
+    }
+
+    for(MonHoc* monHoc : this->getDanhSachMonHoc()){
+        file << monHoc->getThongTinInLine() << endl;
+    }
+
+    file.close();
+}
+
 
 vector<MonHoc*> QLMonHocService::getDanhSachMonHoc() {
     return this->danhSachMonHoc.toVector();
@@ -102,5 +122,3 @@ MonHoc* QLMonHocService::timMonHocBangIndex(int index) {
 
     return this->danhSachMonHoc[index];
 }
-
-
