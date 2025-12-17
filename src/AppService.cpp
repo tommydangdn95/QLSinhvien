@@ -104,7 +104,15 @@ void AppService::ghiDeFile() {
         return;
     }
 
-} 
+    Node* temp = this->danhSachBangDiem.getHead();
+    while (temp != nullptr) {
+        BangDiem* bangDiem = temp->data;
+        file << bangDiem->getThongTinInLine() << endl;
+        temp = temp->next;
+    }
+
+    file.close();
+}
 
 // ========================================
 // ===== NHAP, Sua, Xoa DU LIEU =====
@@ -187,7 +195,7 @@ void AppService::capNhatThongTinMonHoc() {
     this->qlMonHocService.hienThiDanhSachMonHoc();
 
     int monHocLuaChon;
-    cout << "Nhap ma chon mon hoc (1-10): ";
+    cout << "Nhap ma chon mon hoc (1 - " << danhSachMonHoc.size() << "): ";
     cin >> monHocLuaChon;
 
     monHocLuaChon = monHocLuaChon - 1;
@@ -199,16 +207,88 @@ void AppService::capNhatThongTinMonHoc() {
      
     chonMonHoc->capNhatThongTin();
     this->qlMonHocService.ghiDeFile();
-    
+
+    this->danhSachBangDiem.capNhatBangDiemBangMonHoc(chonMonHoc);
+    this->ghiDeFile();
+
     cout << "Cap nhat thong tin thanh cong" << endl;
 }
 
-
 //5. Sua thong tin sinh vien
+void AppService::capNhatThongTinSinhVien() {
+    vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
+
+    if (danhSachSinhVien.empty()) {
+        cout << "Chua co sinh vien nao! " << endl;
+        return;
+    }
+
+    cout << "----- Danh sach sinh vien ----- " << endl;
+    this->qlSinhvienService.hienThiDanhSachSinhVien();
+
+    int sinhvienLuaChon;
+    cout << "Nhap lua chon sinh vien:  ";
+    cin >> sinhvienLuaChon;
+
+    sinhvienLuaChon = sinhvienLuaChon - 1;
+    SinhVien* chonSv = this->qlSinhvienService.timSinhVienBangIndex(sinhvienLuaChon);
+    if (chonSv == nullptr) {
+        cout << "Chon sinh vien khong hop le hoac khong tim thay sinh vien! " << endl;
+        return;
+    }
+
+    chonSv->capNhatThongTin();
+    this->qlSinhvienService.ghiDeFile();
+
+    this->danhSachBangDiem.capNhatBangDiemBangSinhVien(chonSv);
+    this->ghiDeFile();
+}
 
 //6. Sua diem sinh vien
+void AppService::capNhatThongTinBangDiem() {
+    this->danhSachBangDiem.hienThiDanhSachBangDiem();
+
+    int bangDiemchon;
+    cout << "Nhap lua chon bang diem:  ";
+    cin >> bangDiemchon;
+
+    bangDiemchon = bangDiemchon - 1;
+    BangDiem* bangDiem = this->danhSachBangDiem.timBangDiemTheoIndex(bangDiemchon);
+    bangDiem->capNhatThongTin();
+    this->ghiDeFile();
+}
+
 
 //7. Xoa sinh vien
+void AppService::xoaSinhVien() {
+    vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
+
+    if (danhSachSinhVien.empty()) {
+        cout << "Chua co sinh vien nao! " << endl;
+        return;
+    }
+
+    cout << "----- Danh sach sinh vien ----- " << endl;
+    this->qlSinhvienService.hienThiDanhSachSinhVien();
+
+    int sinhvienLuaChon;
+    cout << "Nhap lua chon sinh vien:  ";
+    cin >> sinhvienLuaChon;
+
+    sinhvienLuaChon = sinhvienLuaChon - 1;
+    SinhVien* chonSv = this->qlSinhvienService.timSinhVienBangIndex(sinhvienLuaChon);
+    if (chonSv == nullptr) {
+        cout << "Chon sinh vien khong hop le hoac khong tim thay sinh vien! " << endl;
+        return;
+    }
+
+    this->qlSinhvienService.removeSinhVien(chonSv);
+    this->qlSinhvienService.ghiDeFile();
+
+    this->danhSachBangDiem.capNhatBangDiemKhiXoaSinhVien(chonSv);
+    this->ghiDeFile();
+    cout << "Xoa sinh vien " << chonSv->getMaSV() << " thanh cong" << endl;
+}
 
 //8. Xoa mon hoc
 

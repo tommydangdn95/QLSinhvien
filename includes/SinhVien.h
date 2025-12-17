@@ -34,7 +34,8 @@ public:
 
     void nhap();
     string getThongTin();
-    void capNhatThongTin(string hoVaTen, string ngaySinh);
+    string getThongTinInLine();
+    void capNhatThongTin();
 };
 
 #endif //SINHVIEN_H

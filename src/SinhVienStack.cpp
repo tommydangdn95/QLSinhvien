@@ -109,18 +109,15 @@ void SinhVienStack::clear() {
     }
 }
 
-void SinhVienStack::display() const {
-    if (empty()) {
-        std::cout << "Stack rỗng!" << std::endl;
-        return;
+SinhVienStack SinhVienStack::removeAt(SinhVien* sinhVien) {
+    vector<SinhVien*> listSinhVien = toVector();
+    SinhVienStack newStack;
+    for (SinhVien* sinhVienItem: listSinhVien) {
+        if (sinhVienItem->getMaSV() != sinhVien->getMaSV()) {
+            newStack.push(sinhVienItem);
+        }
     }
 
-    std::cout << "Stack (từ đỉnh xuống):" << std::endl;
-    StackNode* current = top;
-    int index = 0;
-    while (current != nullptr) {
-        std::cout << index << ". " << current->data->getThongTin() << std::endl;
-        current = current->next;
-        index++;
-    }
+    return newStack;
 }
+

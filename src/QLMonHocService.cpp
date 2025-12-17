@@ -122,3 +122,20 @@ MonHoc* QLMonHocService::timMonHocBangIndex(int index) {
 
     return this->danhSachMonHoc[index];
 }
+
+void QLMonHocService::xoaMonHoc(MonHoc *monHoc) {
+    Node* curr = head;
+    while (curr) {
+        if (curr->data == x) {
+            Node* del = curr;
+
+            if (del->prev) del->prev->next = del->next;
+            if (del->next) del->next->prev = del->prev;
+
+            curr = curr->next;
+            delete del;
+        } else {
+            curr = curr->next;
+        }
+    }
+}

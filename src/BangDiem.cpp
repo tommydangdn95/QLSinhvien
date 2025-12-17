@@ -47,4 +47,10 @@ string BangDiem::getThongTinInLine(){
         << this->diem->getDiemChuyenCan() << "|"
         << this->diem->getDiemGiuaKy() << "|"
         << this->diem->getDiemCuoiKy() << "|";
+    return ss.str();
+}
+
+void BangDiem::capNhatThongTin() {
+    cout << "Sua diem cho sinh vien: " << this->sinhVien->getHoTen() << " ten mon: " << this->monHoc->getTenMon() << endl;
+    this->diem->capNhatThongTin();
 }

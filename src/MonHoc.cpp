@@ -47,11 +47,23 @@ string MonHoc::getThongTin() {
 }
 
 void MonHoc::capNhatThongTin() {
+    string nhapTenMon;
+    string nhapSoTinChi;
     cout << "Thay doi thong tin mon hoc: " << maMon << endl;
     cout << "Nhap ten mon: ";
-    getline(cin, tenMon);
+    cin.ignore();
+    getline(cin, nhapTenMon);
     cout << "Nhap so tin chi: ";
-    cin >> soTinChi;
+    getline(cin, nhapSoTinChi);
+
+    if (!nhapTenMon.empty()) {
+        setTenMon(nhapTenMon);
+    }
+
+    if (!nhapSoTinChi.empty()) {
+        int convertSoTinChi = stoi(nhapSoTinChi);
+        setSoTinChi(convertSoTinChi);
+    }
 }
 
 string MonHoc::getThongTinInLine() {
@@ -59,4 +71,5 @@ string MonHoc::getThongTinInLine() {
     ss << this->maMon << "|"
         << this->tenMon << "|"
         << this->soTinChi << "|";
+    return ss.str();
 }

@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include "../includes/LinkedList.h"
+
+#include <complex>
 #include <map>
 #include <vector>
 using namespace std;
@@ -52,6 +54,73 @@ void LinkedList::capNhatBangDiemBangMonHoc(MonHoc* monHoc) {
         temp = temp->next;
     }
 }
+
+void LinkedList::capNhatBangDiemBangSinhVien(SinhVien* sinhVien) {
+    if (this->length == 0) {
+        cout << "Danh sach bang diem trong" << endl;
+        return;
+    }
+
+    Node* temp = this->head;
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        if (current->getSinhVien()->getMaSV() == sinhVien->getMaSV()){
+            current->setSinhVien(sinhVien);
+        }
+        temp = temp->next;
+    }
+}
+
+void LinkedList::capNhatBangDiemKhiXoaSinhVien(SinhVien *sinhVien) {
+    if (this->head == nullptr || this->length == 0) {
+        cout << "Danh sach bang diem trong" << endl;
+        return;
+    }
+
+    if (head->data->getSinhVien()->getMaSV() == sinhVien->getMaSV()) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        return;
+    }
+
+    Node* current = head;
+    while (current != nullptr && current->next != nullptr) {
+        if (current->next->data->getSinhVien()->getMaSV() == sinhVien->getMaSV()) {
+            Node* nodeDel = current->next;
+            current->next = nodeDel->next;
+            delete nodeDel;
+        } else {
+            current = current->next;
+        }
+    };
+}
+
+void LinkedList::capNhatBangDiemKhiXoaMonHoc(MonHoc *monHoc) {
+    if (this->head == nullptr || this->length == 0) {
+        cout << "Danh sach bang diem trong" << endl;
+        return;
+    }
+
+    if (head->data->getMonHoc()->getMaMon() == monHoc->getMaMon()) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        return;
+    }
+
+    Node* current = head;
+    while (current != nullptr && current->next != nullptr) {
+        if (current->next->data->getSinhVien()->getMaSV() == monHoc->getMaMon()) {
+            Node* nodeDel = current->next;
+            current->next = nodeDel->next;
+            delete nodeDel;
+        } else {
+            current = current->next;
+        }
+    };
+}
+
 
 
 void LinkedList::hienThiDanhSachBangDiem() {
@@ -142,6 +211,27 @@ LinkedList* LinkedList::timDanhSachSinhVienDiemTongketThapNhat() {
 
     return listResult;
 }
+
+BangDiem* LinkedList::timBangDiemTheoIndex(int index) {
+    if (this->length == 0) {
+        cout << "Danh sach bang diem trong" << endl;
+        return nullptr;
+    }
+
+    Node* temp = this->head;
+    int bangDiemIndex = 0;
+    while (temp != nullptr) {
+        BangDiem* current = temp->data;
+        if (bangDiemIndex == index) {
+            return current;
+        }
+        bangDiemIndex++;
+        temp = temp->next;
+    }
+
+    return nullptr;
+}
+
 
 LinkedList* LinkedList::timDanhSachSinhVienDiemTongketCaoNhat() {
     LinkedList* listResult = new LinkedList();

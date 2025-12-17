@@ -75,6 +75,20 @@ void QLSinhVienService::kiemTraFile() {
     fileCheck.close();
 }
 
+void QLSinhVienService::ghiDeFile() {
+    ofstream file(this->FILE_NAME);
+
+    if (!file.is_open()) {
+        cout << "⚠ Khong mo duoc file!\n";
+        return;
+    }
+
+    for(SinhVien * sinhVien : this->getDanhSachSinhVien()){
+        file << sinhVien->getThongTinInLine() << endl;
+    }
+
+    file.close();
+}
 
 
 vector<SinhVien *> QLSinhVienService::getDanhSachSinhVien() {
@@ -115,4 +129,9 @@ SinhVien* QLSinhVienService::timSinhVienBangId(string maSinhVien) {
     }
 
     return this->danhSachSinhVien.findById(maSinhVien);
+}
+
+void QLSinhVienService::removeSinhVien(SinhVien* sinhVien) {
+    SinhVienStack stackSinhVien = this->danhSachSinhVien.removeAt(sinhVien);
+    this->danhSachSinhVien = stackSinhVien;
 }

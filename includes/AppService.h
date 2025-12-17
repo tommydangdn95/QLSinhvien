@@ -36,6 +36,7 @@ public:
     void capNhatThongTinMonHoc();
     void capNhatThongTinSinhVien();
     void capNhatThongTinBangDiem();
+    void xoaSinhVien();
 
     // ========================================
     // ===== HIEN THI DU LIEU ===== =====
@@ -73,10 +74,7 @@ public:
     // ========================================
     // Sinh vien
     // ========================================
-    void themMoiSinhVien();
-    
-    void capNhatThongTinSinhVien();
-    void xoaSinhVien();
+
     SinhVien* timKiemSinhVienBangId(string maSinhVien);
     void sapXepSinhVienTheoTenSinhVien();
 

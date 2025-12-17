@@ -32,6 +32,8 @@ public:
     SinhVien* timSinhVienBangIndex(int index);
     void luuSinhVienVaoFile(SinhVien* sv);
     void docFileSinhVien();
+    void ghiDeFile();
+    void removeSinhVien(SinhVien* sinhVien);
 };
 
 #endif //QLSINHVIENSERVICE_H

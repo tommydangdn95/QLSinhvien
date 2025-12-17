@@ -25,6 +25,7 @@ public:
     vector<MonHoc*> getDanhSachMonHoc();
     MonHoc* timMonHocBangId(string maMonHoc);
     MonHoc* timMonHocBangIndex(int index);
+    void xoaMonHoc(MonHoc* monHoc);
     void luuMonHocVaoFile(MonHoc* monHoc);
     void docFileMonHOc();
     void ghiDeFile();

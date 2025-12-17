@@ -35,9 +35,8 @@ public:
     bool empty() const;
     int size() const;
     vector<SinhVien*> toVector() const;
-
     void clear();
-    void display() const;
+    SinhVienStack removeAt(SinhVien* sinhVien);
 };
 
 #endif //SINHVIENSTACK_H

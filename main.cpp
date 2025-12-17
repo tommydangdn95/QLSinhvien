@@ -9,6 +9,14 @@
 #include "includes/AppService.h"
 #include "includes/QLSinhVienService.h"
 
+
+void enterLine() {
+    string line;
+    cout << "Nhan phim bat ky de tiep tuc : ";
+    cin.ignore();
+    getline(cin, line);
+}
+
 int main() {
     AppService appSerivce;
 
@@ -81,50 +89,74 @@ int main() {
             case 4:
                 appSerivce.capNhatThongTinMonHoc();
                 break;
+            case 5:
+                appSerivce.capNhatThongTinSinhVien();
+                break;
+            case 6:
+                appSerivce.capNhatThongTinBangDiem();
+                break;
+            case 7:
+                appSerivce.xoaSinhVien();
+                enterLine();
+            break;
             case 10:
                 appSerivce.hienThiDanhSachSinhVien();
+                enterLine();
                 break;
             case 11:
                 appSerivce.hienThiDanhSachMonHoc();
+                enterLine();
                 break;
             case 12:
                 appSerivce.hienThiDanhSachBangDiemSinhVien();
+                enterLine();
                 break;
             case 13:
                 appSerivce.timDanhSachBangDiemSinhVienBangMaSv();
+                enterLine();
                 break;
             case 14:
                 appSerivce.timDanhSachBangDiemSinhVienBangMaMonHoc();
+                enterLine();
                 break;
 
 
             case 19:
                 appSerivce.timSinhVienDiemTongketCaoNhat();
+                enterLine();
                 break;
             case 20:
                 appSerivce.timSinhVienDiemTongketThapNhat();
+                enterLine();
                 break;
             case 21:
                 appSerivce.timMonHocSinhVienDangKiNhieuNhat();
+                enterLine();
                 break;
             case 22:
                 appSerivce.timMonHocSinhVienDangKiItMonNhat();
+                enterLine();
                 break;
 
             case 23:
                 appSerivce.hienThiDanhSachDiemTrungBinhSinhVien();
+                enterLine();
                 break;
             case 24:
                 appSerivce.hienThiDanhSachDiemTrungBinhTheoMonHoc();
+                enterLine();
                 break;
             case 25:
                 appSerivce.hienThiDanhSachTongSoTinChiCuaSinhVien();
+                enterLine();
                 break;
             case 26:
                 appSerivce.demSoSinhVienDatLoaiGioi();
+                enterLine();
                 break;
             case 27:
                 appSerivce.demSoMonHocSinhVienDangKy();
+                enterLine();
                 break;
             default:
                 break;

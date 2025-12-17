@@ -29,6 +29,7 @@ public:
 
     string getThongTin();
     string getThongTinInLine();
+    void capNhatThongTin();
 };
 
 #endif //BANGDIEM_H

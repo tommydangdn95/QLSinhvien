@@ -68,4 +68,33 @@ string Diem::getThongTin() {
     return msg;
 }
 
+void Diem::capNhatThongTin() {
+    string nhapDiemChuyenCan, nhapDiemGiuaKy, nhapDiemCuoiKy;
+    cout << "Diem chuyen can (0-10): ";
+    cin.ignore();
+    getline(cin, nhapDiemChuyenCan);
+    cout << "Diem giua ky (0-10): ";
+    getline(cin, nhapDiemGiuaKy);
+    cout << "Diem cuoi ky (0-10): ";
+    getline(cin, nhapDiemCuoiKy);
+
+    if (!nhapDiemChuyenCan.empty()) {
+        float convertDck = stof(nhapDiemChuyenCan);
+        setDiemChuyenCan(convertDck);
+    }
+
+    if (!nhapDiemGiuaKy.empty()) {
+        float convertDgk = stof(nhapDiemGiuaKy);
+        setDiemGiuaKy(convertDgk);
+    }
+
+    if (!nhapDiemCuoiKy.empty()) {
+        float convertCuoiKy = stof(nhapDiemCuoiKy);
+        setDiemCuoiKy(convertCuoiKy);
+    }
+
+    tinhDiemTongKet();
+}
+
+
 

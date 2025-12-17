@@ -60,8 +60,25 @@ string SinhVien::getThongTin() {
     return msg;
 }
 
-void SinhVien::capNhatThongTin(string hoVaTen, string ngaySinh) {
+string SinhVien::getThongTinInLine() {
+    stringstream ss;
+    ss << this->maSinhVien << "|"
+        << this->hoTen << "|"
+        << this->ngaySinh << "|"
+        << this->lop << "|"
+        << this->khoa;
+    return ss.str();
+}
+
+void SinhVien::capNhatThongTin() {
     cout << "Cap nhat thong tin sinh vien:  " << maSinhVien << endl;
-    this->setHoTen(hoVaTen);
-    this->setNgaySinh(ngaySinh);
+    cin.ignore();
+    cout << "Nhap ho ten: ";
+    getline(cin, hoTen);
+    cout << "Nhap ngay sinh (dd/mm/yyyy): ";
+    getline(cin, ngaySinh);
+    cout << "Nhap lop: ";
+    getline(cin, lop);
+    cout << "Nhap khoa: ";
+    getline(cin, khoa);
 }

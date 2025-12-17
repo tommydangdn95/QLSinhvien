@@ -34,6 +34,7 @@ public:
     void tinhDiemTongKet();
     void nhap();
     string getThongTin();
+    void capNhatThongTin();
 };
 
 #endif //DIEM_H
