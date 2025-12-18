@@ -433,7 +433,6 @@ void AppService::timDanhSachBangDiemSinhVienBangMaMonHoc() {
 
 void AppService::sapXepMonHocTheoTen() {
     this->qlMonHocService.sortMonHocTheoTen();
-    this->qlMonHocService.ghiDeFile();
     cout << "Sap xep danh sach mon hoc thanh cong theo ten" << endl;
 }
 
@@ -448,10 +447,9 @@ void AppService::sapXepBangDiemTheoMaSv() {
 }
 
 void AppService::sapXepBangDiemTheoDiemTrungBinh() {
-
+    this->danhSachBangDiem.sapXepBangDiemTheoDiemTrungBinh();
+    cout << "Sap xep danh sach sinh vien thanh cong theo diem trung binh" << endl;
 }
-
-
 
 
 // ========================================

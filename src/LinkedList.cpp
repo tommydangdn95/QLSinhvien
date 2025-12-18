@@ -441,3 +441,25 @@ void LinkedList::sapXepDanhSachBangDiemTheoMaSinhVien() {
         }
     }
 }
+
+void LinkedList::sapXepBangDiemTheoDiemTrungBinh() {
+    if (!head || !head->next) {
+        cout << "Danh sach bang diem trong" << endl;
+        return;
+    }
+
+    bool swapped = true;
+    while (swapped) {
+        swapped = false;
+        Node* temp = head;
+        while (temp != nullptr && temp->next != nullptr) {
+            if (temp->data->getDiem()->getDiemTongKet() > temp->next->data->getDiem()->getDiemTongKet()) {
+                BangDiem* tempData = temp->data;
+                temp->data = temp->next->data;
+                temp->next->data = tempData;
+                swapped = true;
+            }
+            temp = temp->next;
+        }
+    }
+}

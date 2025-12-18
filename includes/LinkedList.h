@@ -27,6 +27,8 @@ public:
 
     void hienThiDanhSachBangDiem();
     void sapXepDanhSachBangDiemTheoMaSinhVien();
+    void sapXepBangDiemTheoDiemTrungBinh();
+
     BangDiem* timBangDiemTheoIndex(int index);
     LinkedList* timBangDiemTheoMaSinhVien(SinhVien* sv);
     LinkedList* timBangDiemTheoMonHoc(MonHoc* monHoc);
