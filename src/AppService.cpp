@@ -258,8 +258,39 @@ void AppService::capNhatThongTinBangDiem() {
     this->ghiDeFile();
 }
 
+//7. Xoa mon hoc
+void AppService::xoaMonHoc() {
+    vector<MonHoc*> danhSachMonHoc = this->qlMonHocService.getDanhSachMonHoc();
+    if (danhSachMonHoc.empty()) {
+        cout << "Chua co mon hoc nao! " << endl;
+        return;
+    }
 
-//7. Xoa sinh vien
+    cout << "----- Danh sach mon hoc ----- " << endl;
+    this->qlMonHocService.hienThiDanhSachMonHoc();
+
+    int monHocLuaChon;
+    cout << "Nhap ma chon mon hoc (1 - " << danhSachMonHoc.size() << "): ";
+    cin >> monHocLuaChon;
+
+    monHocLuaChon = monHocLuaChon - 1;
+    MonHoc* chonMonHoc = this->qlMonHocService.timMonHocBangIndex(monHocLuaChon);
+    if (chonMonHoc == nullptr) {
+        cout << "Chon mon hoc khong hop le hoac khong tim thay mon hoc! " << endl;
+        return;
+    }
+
+    this->qlMonHocService.xoaMonHoc(chonMonHoc);
+    this->qlMonHocService.ghiDeFile();
+
+    this->danhSachBangDiem.capNhatBangDiemBangMonHoc(chonMonHoc);
+    this->ghiDeFile();
+    cout << "Xoa mon hoc " << chonMonHoc->getMaMon() << " thanh cong" << endl;
+}
+
+
+
+//8. Xoa sinh vien
 void AppService::xoaSinhVien() {
     vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
 
@@ -290,9 +321,20 @@ void AppService::xoaSinhVien() {
     cout << "Xoa sinh vien " << chonSv->getMaSV() << " thanh cong" << endl;
 }
 
-//8. Xoa mon hoc
-
 //9. Xoa diem sinh vien
+void AppService::xoaBangDiem() {
+    this->danhSachBangDiem.hienThiDanhSachBangDiem();
+
+    int bangDiemchon;
+    cout << "Nhap lua chon bang diem:  ";
+    cin >> bangDiemchon;
+
+    bangDiemchon = bangDiemchon - 1;
+    BangDiem* bangDiem = this->danhSachBangDiem.timBangDiemTheoIndex(bangDiemchon);
+    this->danhSachBangDiem.capNhatBangDiemKhiXoaBangDiem(bangDiem);
+    this->ghiDeFile();
+    cout << "Xoa bang diem sinh vien " << bangDiem->getSinhVien()->getMaSV() << " mon hoc " << bangDiem->getMonHoc()->getMaMon() << " thanh cong" << endl;
+}
 
 
 
@@ -389,9 +431,27 @@ void AppService::timDanhSachBangDiemSinhVienBangMaMonHoc() {
 // ========================================
 // ===== Sap Xep  ===== =====
 
-void AppService::sapXepDanhSachBangDiemTheoMaSinhVien() {
+void AppService::sapXepMonHocTheoTen() {
+    this->qlMonHocService.sortMonHocTheoTen();
+    this->qlMonHocService.ghiDeFile();
+    cout << "Sap xep danh sach mon hoc thanh cong theo ten" << endl;
+}
+
+void AppService::sapXepSinhVienTheoTen() {
+    this->qlSinhvienService.sortSinhVienTheoTen();
+    cout << "Sap xep danh sach sinh vien thanh cong theo ten" << endl;
+}
+
+void AppService::sapXepBangDiemTheoMaSv() {
+    this->danhSachBangDiem.sapXepDanhSachBangDiemTheoMaSinhVien();
+    cout << "Sap xep danh sach sinh vien thanh cong theo ma sinh vien" << endl;
+}
+
+void AppService::sapXepBangDiemTheoDiemTrungBinh() {
 
 }
+
+
 
 
 // ========================================

@@ -23,6 +23,7 @@ public:
 
     void capNhatBangDiemKhiXoaMonHoc(MonHoc* monHoc);
     void capNhatBangDiemKhiXoaSinhVien(SinhVien* sinhVien);
+    void capNhatBangDiemKhiXoaBangDiem(BangDiem* bangDiem);
 
     void hienThiDanhSachBangDiem();
     void sapXepDanhSachBangDiemTheoMaSinhVien();

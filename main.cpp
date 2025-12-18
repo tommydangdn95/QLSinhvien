@@ -21,7 +21,6 @@ int main() {
     AppService appSerivce;
 
     int luaChon;
-
     do {
         cout << "\n========== QUAN LY DIEM SINH VIEN ==========" << endl;
         cout << "===== NHAP, Sua, Xoa DU LIEU =====" << endl;
@@ -31,8 +30,8 @@ int main() {
         cout << "4. Sua thong tin mon hoc" << endl;
         cout << "5. Sua thong tin sinh vien" << endl;
         cout << "6. Sua diem sinh vien" << endl;
-        cout << "7. Xoa sinh vien" << endl;
-        cout << "8. Xoa mon hoc" << endl;
+        cout << "7. Xoa mon hoc" << endl;
+        cout << "8. Xoa sinh vien" << endl;
         cout << "9. Xoa diem sinh vien" << endl;
 
         cout << "\n===== HIEN THI DU LIEU =====" << endl;
@@ -96,7 +95,15 @@ int main() {
                 appSerivce.capNhatThongTinBangDiem();
                 break;
             case 7:
+                appSerivce.xoaMonHoc();
+                enterLine();
+                break;
+            case 8:
                 appSerivce.xoaSinhVien();
+                enterLine();
+            break;
+            case 9:
+                appSerivce.xoaBangDiem();
                 enterLine();
             break;
             case 10:
@@ -119,8 +126,22 @@ int main() {
                 appSerivce.timDanhSachBangDiemSinhVienBangMaMonHoc();
                 enterLine();
                 break;
-
-
+            case 15:
+                appSerivce.sapXepMonHocTheoTen();
+                enterLine();
+                break;
+            case 16:
+                appSerivce.sapXepSinhVienTheoTen();
+                enterLine();
+                break;
+            case 17:
+                appSerivce.sapXepBangDiemTheoMaSv();
+                enterLine();
+                break;
+            case 18:
+                appSerivce.sapXepBangDiemTheoDiemTrungBinh();
+                enterLine();
+                break;
             case 19:
                 appSerivce.timSinhVienDiemTongketCaoNhat();
                 enterLine();
@@ -137,7 +158,6 @@ int main() {
                 appSerivce.timMonHocSinhVienDangKiItMonNhat();
                 enterLine();
                 break;
-
             case 23:
                 appSerivce.hienThiDanhSachDiemTrungBinhSinhVien();
                 enterLine();

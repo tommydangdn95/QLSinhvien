@@ -34,6 +34,7 @@ public:
     void docFileSinhVien();
     void ghiDeFile();
     void removeSinhVien(SinhVien* sinhVien);
+    void sortSinhVienTheoTen();
 };
 
 #endif //QLSINHVIENSERVICE_H

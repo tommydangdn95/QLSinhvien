@@ -37,6 +37,8 @@ public:
     void capNhatThongTinSinhVien();
     void capNhatThongTinBangDiem();
     void xoaSinhVien();
+    void xoaMonHoc();
+    void xoaBangDiem();
 
     // ========================================
     // ===== HIEN THI DU LIEU ===== =====
@@ -48,6 +50,13 @@ public:
     // ===== TIM KIEM ===== ===== =====
     void timDanhSachBangDiemSinhVienBangMaSv();
     void timDanhSachBangDiemSinhVienBangMaMonHoc();
+
+    //==========================================
+    // ======== TIM KIEM ====================
+    void sapXepMonHocTheoTen();
+    void sapXepSinhVienTheoTen();
+    void sapXepBangDiemTheoMaSv();
+    void sapXepBangDiemTheoDiemTrungBinh();
 
     // ========================================
     // ===== TIM MIN/MAX, Tinh Toan, Tong  ===== =====
@@ -67,7 +76,6 @@ public:
     // ========================================
     // ===== ===== TINH TOAN =====  ===== =====
 
-    void xoaMonHocBangIndex();
     MonHoc* timKiemMonHoc(string maMonHoc);
     void sapXepMonHocTheoTenMonHoc();
 
@@ -89,17 +97,6 @@ public:
     void suaDiemSinhVienBangMasv(string maSv);
     void xoaDiemSinhVien();
     void xoaDiemSinhVienBangMasv(string maSv);
-
-    void sapXepDanhSachBangDiemTheoMaSinhVien();
-    void sapXepDanhSachBangDiemSinhVienTheoTenSv();
-    void sapXepDanhSachBangDiemSinhVienTheoTenMonHoc();
-    void sapXepDanhSachBangDiemSinhvienTheoDiemTrungBinh();
-
-
-    // Toi thieu 4 yeu cau tim phan tu lon nhat, nho nhat
-
-
-    // Toi thieu 5 yeu cau tinh tong, trung binh, dem
 
 
     // Các yêu cầu thống kê theo điều kiện: 1 điểm (Tối thiểu 5 yêu cầu)

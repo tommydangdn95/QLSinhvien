@@ -121,6 +121,40 @@ void LinkedList::capNhatBangDiemKhiXoaMonHoc(MonHoc *monHoc) {
     };
 }
 
+void LinkedList::capNhatBangDiemKhiXoaBangDiem(BangDiem *bangDiem) {
+    if (this->head == nullptr || this->length == 0) {
+        cout << "Danh sach bang diem trong" << endl;
+        return;
+    }
+
+    bool isMatch = head->data->getSinhVien()->getMaSV() == bangDiem->getSinhVien()->getMaSV()
+                && head->data->getMonHoc()->getMaMon() == bangDiem->getMonHoc()->getMaMon();
+
+    if (isMatch) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        return;
+    }
+
+    Node* current = head;
+    while (current != nullptr && current->next != nullptr) {
+
+        bool isMatchItem = current->data->getSinhVien()->getMaSV() == bangDiem->getSinhVien()->getMaSV()
+                && current->data->getMonHoc()->getMaMon() == bangDiem->getMonHoc()->getMaMon();
+
+        if (isMatchItem) {
+            Node* nodeDel = current->next;
+            current->next = nodeDel->next;
+
+            this-length--;
+            delete nodeDel;
+        } else {
+            current = current->next;
+        }
+    };
+}
+
 
 
 void LinkedList::hienThiDanhSachBangDiem() {
@@ -385,21 +419,19 @@ int LinkedList::demSoMonHocSinhVienDaDangKy(SinhVien* sinhVien) {
     return frequency.size();
 }
 
-// Sap xep bang diem theo maSV tang dan
+
 void LinkedList::sapXepDanhSachBangDiemTheoMaSinhVien() {
     if (!head || !head->next) {
         cout << "Danh sach bang diem trong" << endl;
         return;
     }
 
-    // Bubble sort by student ID
     bool swapped = true;
     while (swapped) {
         swapped = false;
         Node* temp = head;
         while (temp != nullptr && temp->next != nullptr) {
             if (temp->data->getSinhVien()->getMaSV() > temp->next->data->getSinhVien()->getMaSV()) {
-                // Swap data
                 BangDiem* tempData = temp->data;
                 temp->data = temp->next->data;
                 temp->next->data = tempData;

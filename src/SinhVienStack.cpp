@@ -5,6 +5,7 @@
 #include "../includes/SinhVienStack.h"
 #include <iostream>
 #include <algorithm>
+#include <cmath>
 
 SinhVienStack::SinhVienStack() {
     this->top = nullptr;
@@ -118,6 +119,28 @@ SinhVienStack SinhVienStack::removeAt(SinhVien* sinhVien) {
         }
     }
 
+    this->count--;
     return newStack;
+}
+
+void SinhVienStack::sortMonHocByName() {
+    SinhVienStack tempStack;
+
+    while (!this->empty()) {
+        SinhVien* sinhVienItem = this->top->data;
+        this->pop();
+
+        while (!tempStack.empty() && tempStack.top->data->getHoTen() > sinhVienItem->getHoTen()) {
+            this->push(tempStack.top->data);
+            tempStack.pop();
+        }
+
+        tempStack.push(sinhVienItem);
+    }
+
+    while (!tempStack.empty()) {
+        this->push(tempStack.top->data);
+        tempStack.pop();
+    }
 }
 

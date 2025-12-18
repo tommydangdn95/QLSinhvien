@@ -29,6 +29,7 @@ public:
     void luuMonHocVaoFile(MonHoc* monHoc);
     void docFileMonHOc();
     void ghiDeFile();
+    void sortMonHocTheoTen();
 };
 
 #endif //QLMONHOCSERVICE_H

@@ -31,6 +31,8 @@ public:
     int size() const;
     vector<MonHoc*> toVector() const;
     void clear();
+    void xoaMonHoc(MonHoc *monHoc);
+    void sortMonhocTheoTen();
 };
 
 

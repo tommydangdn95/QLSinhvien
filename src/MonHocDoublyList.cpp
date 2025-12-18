@@ -79,3 +79,55 @@ void MonHocDoublyList::clear() {
     tail = nullptr;
     count = 0;
 }
+
+void MonHocDoublyList::xoaMonHoc(MonHoc *monHoc) {
+    while (head && head->data->getMaMon() == monHoc->getMaMon()) {
+        MHNode* temp = head;
+        head = head->next;
+        if (head) {
+            head->prev = nullptr;
+        }
+        delete temp;
+    }
+
+    MHNode* curr = head;
+    while (curr != nullptr) {
+        if (curr->data->getMaMon() == monHoc->getMaMon()) {
+            MHNode* del = curr;
+
+            MHNode* prevNode = del->prev;
+            if (prevNode) {
+                prevNode->next = del->next;
+            }
+
+            MHNode* nextNode = del->next;
+            if (nextNode) {
+                nextNode->prev = del->prev;
+            }
+
+            curr = curr->next;
+            this->count--;
+            delete del;
+        } else {
+            curr = curr->next;
+        }
+    }
+}
+
+void MonHocDoublyList::sortMonhocTheoTen() {
+    bool swapped = true;
+    while (swapped) {
+        swapped = false;
+        MHNode* temp = head;
+        while (temp != nullptr && temp->next != nullptr) {
+            if (temp->data->getTenMon() > temp->next->data->getTenMon()) {
+                MonHoc* tempData = temp->data;
+                temp->data = temp->next->data;
+                temp->next->data = tempData;
+                swapped = true;
+            }
+            temp = temp->next;
+        }
+    }
+}
+

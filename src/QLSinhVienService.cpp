@@ -135,3 +135,7 @@ void QLSinhVienService::removeSinhVien(SinhVien* sinhVien) {
     SinhVienStack stackSinhVien = this->danhSachSinhVien.removeAt(sinhVien);
     this->danhSachSinhVien = stackSinhVien;
 }
+
+void QLSinhVienService::sortSinhVienTheoTen() {
+    this->danhSachSinhVien.sortMonHocByName();
+}

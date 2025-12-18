@@ -10,10 +10,13 @@
 
 // Node cho Stack
 struct StackNode {
+public:
     SinhVien* data;
     StackNode* next;
-
-    StackNode(SinhVien* sv) : data(sv), next(nullptr) {}
+    StackNode(SinhVien* sv) {
+        this->data = sv;
+        this->next = nullptr;
+    }
 };
 
 class SinhVienStack {
@@ -37,6 +40,7 @@ public:
     vector<SinhVien*> toVector() const;
     void clear();
     SinhVienStack removeAt(SinhVien* sinhVien);
+    void sortMonHocByName();
 };
 
 #endif //SINHVIENSTACK_H
