@@ -73,36 +73,12 @@ public:
     void demSoSinhVienDatLoaiGioi();
     void demSoMonHocSinhVienDangKy();
 
-    // ========================================
-    // ===== ===== TINH TOAN =====  ===== =====
-
-    MonHoc* timKiemMonHoc(string maMonHoc);
-    void sapXepMonHocTheoTenMonHoc();
-
-    // ========================================
-    // Sinh vien
-    // ========================================
-
-    SinhVien* timKiemSinhVienBangId(string maSinhVien);
-    void sapXepSinhVienTheoTenSinhVien();
-
-    // ========================================
-    // Bang Diem Sinh Vien
-    // ========================================
-
-    void hienThiBangDiemCuaSinhVienBangId(string maSinhVien);
-    void hienThiBangDiemCuaSinhVienBangIndex(int sinhVienIndex);
-
-    void suaDiemSinhVien();
-    void suaDiemSinhVienBangMasv(string maSv);
-    void xoaDiemSinhVien();
-    void xoaDiemSinhVienBangMasv(string maSv);
-
-
-    // Các yêu cầu thống kê theo điều kiện: 1 điểm (Tối thiểu 5 yêu cầu)
+    // Các yêu cầu thống kê theo điều kiện:
     void thongKeSoSinhVienDangHocMonHoc();
     void thongKeSoSinhVienDatLoaiGioiTheoMonHoc();
     void thongKeSoSinhVienDatLoaiGPAXuaSac();
+    void thongKeSoSinhVienTheoLoaiDiem();
+    void thongKeDiemTrungBinhSinhVienTheoLop();
 
     // Additional
     void kiemTraFile();

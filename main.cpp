@@ -63,11 +63,11 @@ int main() {
         cout << "27. Dem so mon hoc sinh vien da dang ky" << endl;
 
         cout << "\n===== THONG KE =====" << endl;
-        cout << "30. Thong ke so sinh vien theo mon hoc" << endl;
-        cout << "31. Thong ke sinh vien Gioi theo mon hoc" << endl;
-        cout << "32. Thong ke sinh vien co GPA > 8.0" << endl;
-        cout << "33. Thong ke so sinh vien theo loai diem" << endl;
-        cout << "34. Thong ke diem trung binh sinh vien theo lop" << endl;
+        cout << "28. Thong ke so sinh vien dang theo mon hoc" << endl;
+        cout << "29. Thong ke sinh vien Gioi theo mon hoc" << endl;
+        cout << "30. Thong ke sinh vien co GPA > 9.0" << endl;
+        cout << "31. Thong ke so sinh vien theo loai diem" << endl;
+        cout << "32. Thong ke diem trung binh sinh vien theo lop" << endl;
         
         cout << "\n0. Thoat" << endl;
         cout << "============================================" << endl;
@@ -178,10 +178,29 @@ int main() {
                 appSerivce.demSoMonHocSinhVienDangKy();
                 enterLine();
                 break;
+            case 28:
+                appSerivce.thongKeSoSinhVienDangHocMonHoc();
+                enterLine();
+                break;
+            case 29:
+                appSerivce.thongKeSoSinhVienDatLoaiGioiTheoMonHoc();
+                enterLine();
+                break;
+            case 30:
+                appSerivce.thongKeSoSinhVienDatLoaiGPAXuaSac();
+                enterLine();
+                break;
+            case 31:
+                appSerivce.thongKeSoSinhVienTheoLoaiDiem();
+                enterLine();
+                break;
+            case 32:
+                appSerivce.thongKeDiemTrungBinhSinhVienTheoLop();
+                enterLine();
+                break;
             default:
                 break;
         }
-
 
     } while (luaChon != 0);
 

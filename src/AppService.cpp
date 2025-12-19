@@ -5,6 +5,7 @@
 #include "../includes/AppService.h"
 #include <string>
 #include <sstream>
+#include <set>
 using namespace std;
 
 AppService::AppService() {
@@ -434,16 +435,19 @@ void AppService::timDanhSachBangDiemSinhVienBangMaMonHoc() {
 void AppService::sapXepMonHocTheoTen() {
     this->qlMonHocService.sortMonHocTheoTen();
     cout << "Sap xep danh sach mon hoc thanh cong theo ten" << endl;
+    this->hienThiDanhSachMonHoc();
 }
 
 void AppService::sapXepSinhVienTheoTen() {
     this->qlSinhvienService.sortSinhVienTheoTen();
     cout << "Sap xep danh sach sinh vien thanh cong theo ten" << endl;
+    this->hienThiDanhSachSinhVien();
 }
 
 void AppService::sapXepBangDiemTheoMaSv() {
     this->danhSachBangDiem.sapXepDanhSachBangDiemTheoMaSinhVien();
     cout << "Sap xep danh sach sinh vien thanh cong theo ma sinh vien" << endl;
+    this->hienThiDanhSachSinhVien();
 }
 
 void AppService::sapXepBangDiemTheoDiemTrungBinh() {
@@ -604,7 +608,7 @@ void AppService::demSoSinhVienDatLoaiGioi() {
     cout << "So sinh vien dat loai gioi: " << count << endl;
 }
 
-// 27. Tinh diem cao nhat cua tung sinh vien
+// 27. dem so mon hoc sinh vien dang ky
 void AppService::demSoMonHocSinhVienDangKy() {
     vector<SinhVien*> danhSachSinhVien = this->qlSinhvienService.getDanhSachSinhVien();
 
@@ -636,6 +640,181 @@ void AppService::demSoMonHocSinhVienDangKy() {
     }
 
     cout << "Sinh vien: " << chonSv->getHoTen() << " da dang ki " << count << " mon" << endl;
+}
+
+// 28. Thong ke so sinh vien theo mon hoc
+void AppService::thongKeSoSinhVienDangHocMonHoc() {
+    cout << "\n========== Thong ke so sinh vien dang hoc theo mon hoc ==========" << endl;
+    vector<MonHoc*> danhSach = this->qlMonHocService.getDanhSachMonHoc();
+
+    for (int i = 0; i < danhSach.size(); i++) {
+        int count = 0;
+        set<string> studentIds;
+
+        Node* temp = this->danhSachBangDiem.getHead();
+        while (temp != nullptr) {
+            if (temp->data->getMonHoc()->getMaMon() == danhSach[i]->getMaMon()) {
+                studentIds.insert(temp->data->getSinhVien()->getMaSV());
+                count++;
+            }
+            temp = temp->next;
+        }
+
+        cout << i + 1 << ". " << danhSach[i]->getTenMon() << " - So sinh vien: " << count << endl;
+    }
+}
+
+// 29.Thong ke sinh vien Gioi theo mon hoc
+void AppService::thongKeSoSinhVienDatLoaiGioiTheoMonHoc() {
+    cout << "\n========== Thong ke sinh vien dat loai Gioi theo mon hoc ==========" << endl;
+    vector<MonHoc*> danhSach = this->qlMonHocService.getDanhSachMonHoc();
+
+    for (int i = 0; i < danhSach.size(); i++) {
+        int count = 0;
+        vector<string> gioiStudents;
+
+        Node* temp = this->danhSachBangDiem.getHead();
+        while (temp != nullptr) {
+            if (temp->data->getMonHoc()->getMaMon() == danhSach[i]->getMaMon()) {
+                float score = temp->data->getDiem()->getDiemTongKet();
+                if (score >= 8.5) {
+                    count++;
+                    gioiStudents.push_back(temp->data->getSinhVien()->getHoTen());
+                }
+            }
+            temp = temp->next;
+        }
+
+        cout << i + 1 << ". " << danhSach[i]->getTenMon() << " - So sinh vien Gioi: " << count;
+        if (count > 0) {
+            cout << " (";
+            for (int j = 0; j < gioiStudents.size(); j++) {
+                cout << gioiStudents[j];
+                if (j < gioiStudents.size() - 1) cout << ", ";
+            }
+            cout << ")";
+        }
+        cout << endl;
+    }
+}
+
+//30. Thong ke sinh vien co GPA > 9
+void AppService::thongKeSoSinhVienDatLoaiGPAXuaSac() {
+    cout << "\n========== Thong ke sinh vien co diem TB tren 8.0 ==========" << endl;
+    int count = 0;
+    vector<SinhVien*> danhSach = this->qlSinhvienService.getDanhSachSinhVien();
+    vector<pair<string, float>> excellentStudents;
+
+    for (SinhVien* sv : danhSach) {
+        float totalScore = 0;
+        int countSubjects = 0;
+
+        Node* temp = this->danhSachBangDiem.getHead();
+        while (temp != nullptr) {
+            if (temp->data->getSinhVien()->getMaSV() == sv->getMaSV()) {
+                totalScore += temp->data->getDiem()->getDiemTongKet();
+                countSubjects++;
+            }
+            temp = temp->next;
+        }
+
+        if (countSubjects > 0) {
+            float gpa = totalScore / countSubjects;
+            if (gpa > 9) {
+                count++;
+                excellentStudents.push_back({sv->getHoTen(), gpa});
+            }
+        }
+    }
+
+    cout << "So sinh vien co diem TB > 8.0: " << count << endl;
+    if (count > 0) {
+        cout << "\nDanh sach:" << endl;
+        for (int i = 0; i < excellentStudents.size(); i++) {
+            cout << i + 1 << ". " << excellentStudents[i].first << " - Diem TB: " << excellentStudents[i].second << endl;
+        }
+    }
+}
+
+// 31.Thong ke so sinh vien theo loai diem
+void AppService::thongKeSoSinhVienTheoLoaiDiem() {
+    cout << "\n========== Thong ke so sinh vien theo loai diem ==========" << endl;
+
+    int gioi = 0, kha = 0, trungBinh = 0, yeu = 0, kem = 0;
+    vector<SinhVien*> danhSach = this->qlSinhvienService.getDanhSachSinhVien();
+
+    for (SinhVien* sv : danhSach) {
+        float totalScore = 0;
+        int count = 0;
+
+        Node* temp = this->danhSachBangDiem.getHead();
+        while (temp != nullptr) {
+            if (temp->data->getSinhVien()->getMaSV() == sv->getMaSV()) {
+                totalScore += temp->data->getDiem()->getDiemTongKet();
+                count++;
+            }
+            temp = temp->next;
+        }
+
+        if (count > 0) {
+            float gpa = totalScore / count;
+            if (gpa >= 8.5) gioi++;
+            else if (gpa >= 7.0) kha++;
+            else if (gpa >= 5.5) trungBinh++;
+            else if (gpa >= 4.0) yeu++;
+            else kem++;
+        }
+    }
+
+    cout << "Gioi (>= 8.5): " << gioi << " sinh vien" << endl;
+    cout << "Kha (7.0 - 8.5): " << kha << " sinh vien" << endl;
+    cout << "Trung binh (5.5 - 7.0): " << trungBinh << " sinh vien" << endl;
+    cout << "Yeu (4.0 - 5.5): " << yeu << " sinh vien" << endl;
+    cout << "Kem (< 4.0): " << kem << " sinh vien" << endl;
+}
+
+//32. Thong ke so sinh vien theo loai diem
+void AppService::thongKeDiemTrungBinhSinhVienTheoLop() {
+    cout << "\n========== Thong ke diem trung binh sinh vien theo lop ==========" << endl;
+    vector<SinhVien*> danhSach = this->qlSinhvienService.getDanhSachSinhVien();
+
+    if (danhSach.empty()) {
+        cout << "Khong co sinh vien nao!" << endl;
+        return;
+    }
+
+    // Group by class and calculate average
+    map<string, pair<float, int>> lopMap; // lop -> (totalScore, count)
+
+    for (SinhVien* sv : danhSach) {
+        float totalScore = 0;
+        int count = 0;
+
+        Node* temp = this->danhSachBangDiem.getHead();
+        while (temp != nullptr) {
+            if (temp->data->getSinhVien()->getMaSV() == sv->getMaSV()) {
+                totalScore += temp->data->getDiem()->getDiemTongKet();
+                count++;
+            }
+            temp = temp->next;
+        }
+
+        if (count > 0) {
+            string lop = sv->getLop();
+            if (lopMap.find(lop) == lopMap.end()) {
+                lopMap[lop] = {totalScore / count, 1};
+            } else {
+                lopMap[lop].first += (totalScore / count);
+                lopMap[lop].second++;
+            }
+        }
+    }
+
+    // Display results
+    for (auto& pair : lopMap) {
+        float avgGpa = pair.second.first / pair.second.second;
+        cout << "Lop " << pair.first << ": " << avgGpa << " diem trung binh" << endl;
+    }
 }
 
 
