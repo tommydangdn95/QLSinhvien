@@ -89,6 +89,7 @@ void LinkedList::capNhatBangDiemKhiXoaSinhVien(SinhVien *sinhVien) {
         if (current->next->data->getSinhVien()->getMaSV() == sinhVien->getMaSV()) {
             Node* nodeDel = current->next;
             current->next = nodeDel->next;
+            this->length--;
             delete nodeDel;
         } else {
             current = current->next;
@@ -111,9 +112,10 @@ void LinkedList::capNhatBangDiemKhiXoaMonHoc(MonHoc *monHoc) {
 
     Node* current = head;
     while (current != nullptr && current->next != nullptr) {
-        if (current->next->data->getSinhVien()->getMaSV() == monHoc->getMaMon()) {
+        if (current->next->data->getMonHoc()->getMaMon() == monHoc->getMaMon()) {
             Node* nodeDel = current->next;
             current->next = nodeDel->next;
+            this->length--;
             delete nodeDel;
         } else {
             current = current->next;
@@ -140,15 +142,14 @@ void LinkedList::capNhatBangDiemKhiXoaBangDiem(BangDiem *bangDiem) {
     Node* current = head;
     while (current != nullptr && current->next != nullptr) {
 
-        bool isMatchItem = current->data->getSinhVien()->getMaSV() == bangDiem->getSinhVien()->getMaSV()
-                && current->data->getMonHoc()->getMaMon() == bangDiem->getMonHoc()->getMaMon();
+        bool isMatchBangDiem = current->next->data->getSinhVien()->getMaSV() == bangDiem->getSinhVien()->getMaSV()
+                            && current->next->data->getMonHoc()->getMaMon() == bangDiem->getMonHoc()->getMaMon();
 
-        if (isMatchItem) {
+        if (isMatchBangDiem) {
             Node* nodeDel = current->next;
             current->next = nodeDel->next;
-
-            this-length--;
             delete nodeDel;
+            this->length--;
         } else {
             current = current->next;
         }

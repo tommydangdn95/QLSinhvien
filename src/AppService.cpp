@@ -284,7 +284,7 @@ void AppService::xoaMonHoc() {
     this->qlMonHocService.xoaMonHoc(chonMonHoc);
     this->qlMonHocService.ghiDeFile();
 
-    this->danhSachBangDiem.capNhatBangDiemBangMonHoc(chonMonHoc);
+    this->danhSachBangDiem.capNhatBangDiemKhiXoaMonHoc(chonMonHoc);
     this->ghiDeFile();
     cout << "Xoa mon hoc " << chonMonHoc->getMaMon() << " thanh cong" << endl;
 }
@@ -447,12 +447,13 @@ void AppService::sapXepSinhVienTheoTen() {
 void AppService::sapXepBangDiemTheoMaSv() {
     this->danhSachBangDiem.sapXepDanhSachBangDiemTheoMaSinhVien();
     cout << "Sap xep danh sach sinh vien thanh cong theo ma sinh vien" << endl;
-    this->hienThiDanhSachSinhVien();
+    this->hienThiDanhSachBangDiemSinhVien();
 }
 
 void AppService::sapXepBangDiemTheoDiemTrungBinh() {
     this->danhSachBangDiem.sapXepBangDiemTheoDiemTrungBinh();
     cout << "Sap xep danh sach sinh vien thanh cong theo diem trung binh" << endl;
+    this->hienThiDanhSachBangDiemSinhVien();
 }
 
 
@@ -700,7 +701,7 @@ void AppService::thongKeSoSinhVienDatLoaiGioiTheoMonHoc() {
 
 //30. Thong ke sinh vien co GPA > 9
 void AppService::thongKeSoSinhVienDatLoaiGPAXuaSac() {
-    cout << "\n========== Thong ke sinh vien co diem TB tren 8.0 ==========" << endl;
+    cout << "\n========== Thong ke sinh vien co diem TB tren 9.0 ==========" << endl;
     int count = 0;
     vector<SinhVien*> danhSach = this->qlSinhvienService.getDanhSachSinhVien();
     vector<pair<string, float>> excellentStudents;
@@ -727,7 +728,7 @@ void AppService::thongKeSoSinhVienDatLoaiGPAXuaSac() {
         }
     }
 
-    cout << "So sinh vien co diem TB > 8.0: " << count << endl;
+    cout << "So sinh vien co diem TB > 9.0: " << count << endl;
     if (count > 0) {
         cout << "\nDanh sach:" << endl;
         for (int i = 0; i < excellentStudents.size(); i++) {

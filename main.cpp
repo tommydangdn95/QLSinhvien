@@ -47,7 +47,7 @@ int main() {
         cout << "15. Sap xep mon hoc theo ten" << endl;
         cout << "16. Sap xep sinh vien theo ten" << endl;
         cout << "17. Sap xep bang diem theo ma sinh vien" << endl;
-        cout << "18. Sap xep bang diem theo diem trung binh (cao den thap)" << endl;
+        cout << "18. Sap xep bang diem theo diem trung binh" << endl;
 
         cout << "\n===== TIM MIN/MAX =====" << endl;
         cout << "19. Tim sinh vien co diem TB cao nhat" << endl;
