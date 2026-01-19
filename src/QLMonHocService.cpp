@@ -31,13 +31,13 @@ void QLMonHocService::luuMonHocVaoFile(MonHoc *monHoc) {
         << monHoc->getSoTinChi() << "|" << endl;
 
     file.close();
-    cout << "✓ Da them va luu mon hoc! " << endl;
+    cout << "Da them va luu mon hoc! " << endl;
 }
 
 void QLMonHocService::docFileMonHOc() {
     ifstream file(this->FILE_NAME);
     if (!file.is_open()) {
-        cout << "⚠ Chua co file, hay nhap mon hoc de them moi!\n";
+        cout << "Chua co file, hay nhap mon hoc de them moi!\n";
         return;
     }
 
@@ -56,14 +56,14 @@ void QLMonHocService::docFileMonHOc() {
     }
 
     file.close();
-    cout << "✓ Doc " << this->danhSachMonHoc.size() << " mon hoc!\n";
+    cout << "Doc " << this->danhSachMonHoc.size() << " mon hoc!\n";
 }
 
 
 void QLMonHocService::kiemTraFile() {
     ifstream fileCheck(this->FILE_NAME);
     if (!fileCheck.is_open()) {
-        cout << "⚠ File chua ton tai, dang tao file moi...\n";
+        cout << "File chua ton tai, dang tao file moi...\n";
 
         // Tạo file mới (rỗng)
         ofstream fileNew(this->FILE_NAME);
@@ -73,7 +73,7 @@ void QLMonHocService::kiemTraFile() {
         return;
     }
 
-    cout << "✓ File da ton tai!\n";
+    cout << "File da ton tai!\n";
     fileCheck.close();
 }
 
@@ -81,7 +81,7 @@ void QLMonHocService::ghiDeFile() {
     ofstream file(this->FILE_NAME);
 
     if (!file.is_open()) {
-        cout << "⚠ Khong mo duoc file!\n";
+        cout << "Khong mo duoc file!\n";
         return;
     }
 

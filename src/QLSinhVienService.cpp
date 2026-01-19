@@ -28,13 +28,13 @@ void QLSinhVienService::luuSinhVienVaoFile(SinhVien* sv) {
         << sv->getKhoa() << endl;
 
     file.close();
-    cout << "✓ Da them va luu sinh vien! " << endl;
+    cout << "Da them va luu sinh vien! " << endl;
 }
 
 void QLSinhVienService::docFileSinhVien() {
     ifstream file(this->FILE_NAME);
     if (!file.is_open()) {
-        cout << "⚠ Chua co file, hay nhap sinh vien de them moi!\n";
+        cout << "Chua co file, hay nhap sinh vien de them moi!\n";
         return;
     }
 
@@ -54,24 +54,24 @@ void QLSinhVienService::docFileSinhVien() {
     }
 
     file.close();
-    cout << "✓ Doc " << this->danhSachSinhVien.size() << " sinh vien!\n";
+    cout << "Doc " << this->danhSachSinhVien.size() << " sinh vien!\n";
 }
 
 
 void QLSinhVienService::kiemTraFile() {
     ifstream fileCheck(this->FILE_NAME);
     if (!fileCheck.is_open()) {
-        cout << "⚠ File chua ton tai, dang tao file moi...\n";
+        cout << "File chua ton tai, dang tao file moi...\n";
 
         // Tạo file mới (rỗng)
         ofstream fileNew(this->FILE_NAME);
         fileNew.close();
 
-        cout << "✓ Da tao file: " << this->FILE_NAME << "\n";
+        cout << "Da tao file: " << this->FILE_NAME << "\n";
         return;
     }
 
-    cout << "✓ File da ton tai!\n";
+    cout << "File da ton tai!\n";
     fileCheck.close();
 }
 
@@ -79,7 +79,7 @@ void QLSinhVienService::ghiDeFile() {
     ofstream file(this->FILE_NAME);
 
     if (!file.is_open()) {
-        cout << "⚠ Khong mo duoc file!\n";
+        cout << "Khong mo duoc file!\n";
         return;
     }
 

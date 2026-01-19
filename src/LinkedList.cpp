@@ -5,7 +5,6 @@
 #include <iostream>
 #include "../includes/LinkedList.h"
 
-#include <complex>
 #include <map>
 #include <vector>
 using namespace std;
@@ -56,7 +55,7 @@ void LinkedList::capNhatBangDiemBangMonHoc(MonHoc* monHoc) {
 }
 
 void LinkedList::capNhatBangDiemBangSinhVien(SinhVien* sinhVien) {
-    if (this->length == 0) {
+    if (!this->head) {
         cout << "Danh sach bang diem trong" << endl;
         return;
     }
@@ -67,21 +66,22 @@ void LinkedList::capNhatBangDiemBangSinhVien(SinhVien* sinhVien) {
         if (current->getSinhVien()->getMaSV() == sinhVien->getMaSV()){
             current->setSinhVien(sinhVien);
         }
+
         temp = temp->next;
     }
 }
 
 void LinkedList::capNhatBangDiemKhiXoaSinhVien(SinhVien *sinhVien) {
-    if (this->head == nullptr || this->length == 0) {
+    if (!this->head) {
         cout << "Danh sach bang diem trong" << endl;
         return;
     }
 
-    if (head->data->getSinhVien()->getMaSV() == sinhVien->getMaSV()) {
+    while (head->data->getSinhVien()->getMaSV() == sinhVien->getMaSV()) {
         Node* temp = head;
         head = head->next;
         delete temp;
-        return;
+        this->length--;
     }
 
     Node* current = head;
@@ -98,16 +98,16 @@ void LinkedList::capNhatBangDiemKhiXoaSinhVien(SinhVien *sinhVien) {
 }
 
 void LinkedList::capNhatBangDiemKhiXoaMonHoc(MonHoc *monHoc) {
-    if (this->head == nullptr || this->length == 0) {
+    if (!this->head) {
         cout << "Danh sach bang diem trong" << endl;
         return;
     }
 
-    if (head->data->getMonHoc()->getMaMon() == monHoc->getMaMon()) {
+    while (head && head->data->getMonHoc()->getMaMon() == monHoc->getMaMon()) {
         Node* temp = head;
         head = head->next;
+        this->length--;
         delete temp;
-        return;
     }
 
     Node* current = head;
@@ -323,7 +323,7 @@ map<string, int> LinkedList::getDanhSachTanSuatMonHocDuocDangKy() {
 }
 
 float LinkedList::tinhDiemTrungBinhCacMonCuaSinhVien(SinhVien *sinhVien) {
-    if (!head && !head->next) {
+    if (!head || !head->next) {
         cout << "Danh sach bang diem trong" << endl;
         return 0;
     }
@@ -341,7 +341,7 @@ float LinkedList::tinhDiemTrungBinhCacMonCuaSinhVien(SinhVien *sinhVien) {
         temp = temp->next;
     }
 
-    if (sum == 0) {
+    if (total == 0) {
         return 0;
     }
 

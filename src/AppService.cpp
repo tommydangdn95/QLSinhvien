@@ -34,13 +34,13 @@ void AppService::luuBangDiemVaoFile(BangDiem *bangDiem) {
         << bangDiem->getDiem()->getDiemCuoiKy() << "|" << endl;
 
     file.close();
-    cout << "✓ Da them va luu bang diem! " << endl;
+    cout << "Da them va luu bang diem! " << endl;
 }
 
 void AppService::docFileBangDiem() {
     ifstream file(this->FILE_NAME);
     if (!file.is_open()) {
-        cout << "⚠ Chua co file, hay nhap mon hoc de them moi!\n";
+        cout << "Chua co file, hay nhap mon hoc de them moi!\n";
         return;
     }
 
@@ -77,23 +77,23 @@ void AppService::docFileBangDiem() {
     }
 
     file.close();
-    cout << "✓ Doc " << this->danhSachBangDiem.getLength() << " record bang diem!\n";
+    cout << "Doc " << this->danhSachBangDiem.getLength() << " record bang diem!\n";
 }
 
 void AppService::kiemTraFile() {
     ifstream fileCheck(this->FILE_NAME);
     if (!fileCheck.is_open()) {
-        cout << "⚠ File chua ton tai, dang tao file moi...\n";
+        cout << "File chua ton tai, dang tao file moi...\n";
 
         // Tạo file mới (rỗng)
         ofstream fileNew(this->FILE_NAME);
         fileNew.close();
 
-        cout << "✓ Da tao file: " << this->FILE_NAME << "\n";
+        cout << "Da tao file: " << this->FILE_NAME << "\n";
         return;
     }
 
-    cout << "✓ File da ton tai!\n";
+    cout << "File da ton tai!\n";
     fileCheck.close();
 }
 
@@ -101,7 +101,7 @@ void AppService::ghiDeFile() {
     ofstream file(this->FILE_NAME);  // ← XÓA file cũ tự động
         
     if (!file.is_open()) {
-        cout << "⚠ Khong mo duoc file!\n";
+        cout << "Khong mo duoc file!\n";
         return;
     }
 
