@@ -650,12 +650,10 @@ void AppService::thongKeSoSinhVienDangHocMonHoc() {
 
     for (int i = 0; i < danhSach.size(); i++) {
         int count = 0;
-        set<string> studentIds;
 
         Node* temp = this->danhSachBangDiem.getHead();
         while (temp != nullptr) {
             if (temp->data->getMonHoc()->getMaMon() == danhSach[i]->getMaMon()) {
-                studentIds.insert(temp->data->getSinhVien()->getMaSV());
                 count++;
             }
             temp = temp->next;
